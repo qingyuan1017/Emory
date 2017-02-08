@@ -1,0 +1,10 @@
+Q1 Q2 Q3
+a b 
+Q1
+Q2 Q3
+Q1 a Q1
+Q1 b Q2
+Q2 b Q3
+Q2 a Q1
+Q3 a Q3
+Q3 b Q3

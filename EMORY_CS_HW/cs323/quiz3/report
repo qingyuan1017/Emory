@@ -1,0 +1,34 @@
+
+I create the class called ProbabilityBucketSort that inherits the AbstractBucketSort<Double> in order to allow Bucketsort to support the double type. 
+
+
+public ProbabilityBucketSort()
+	{
+		super(10, true);
+		
+	}
+
+This part is the constructor of my ProbabilityBucketSort class. Since the input range is from 0 to 1, we don't need to create max and min parameters in this constructor. The super(10, true) means there are 10 buckets from 0 to 1. It will represent [0,0.1) ,[0.1,0.2), [0.2,0.3)...[0.9,1].
+
+
+protected int getBucketIndex(Double key)
+	{
+		return (int) (key*10);
+	}  
+
+Since every key is in the range of 0 to 1. If we mutiply the key by 10 and cast it to integer type, it will give us the Index of bucket. For example, if our key is 0.68, we multiply it by 10 and the cast it to integer. We will get 6 for the index and it is the bucket for [0.6,0.7).
+
+In the class called ProbabilityBucketSortTest, I evaluate the accuracy with 10 different lists of 100 random double values between 0 to 1 using the basic the same idea as SortTest. I add a method of getRandomDoubleArray with rand.nextDouble() to create random double values.
+
+static public Double[] getRandomDoubleArray(Random rand, int size)
+	{
+		Double[] array = new Double[size];
+		
+		for (int i=0; i<size; i++)
+			array[i] = rand.nextDouble();
+		
+		return array;
+	}
+
+
+Qingyuan Zhang

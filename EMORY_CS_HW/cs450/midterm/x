@@ -1,0 +1,922 @@
+# 1 "stcopy.c"
+ 
+
+# 1 "/usr/include/stdlib.h"
+ 
+# 5
+
+ 
+ 
+
+ 
+ 
+ 
+
+# 15
+
+#ident	"@(#)stdlib.h	1.51	04/06/30 SMI"
+
+# 1 "/usr/include/iso/stdlib_iso.h"
+ 
+# 5
+
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+# 24
+
+# 27
+
+#ident	"@(#)stdlib_iso.h	1.9	04/09/28 SMI"
+
+# 1 "/usr/include/sys/feature_tests.h"
+ 
+# 5
+
+# 8
+
+#ident	"@(#)feature_tests.h	1.25	07/02/02 SMI"
+
+# 1 "/usr/include/sys/ccompile.h"
+ 
+# 5
+
+# 8
+
+#ident	"@(#)ccompile.h	1.2	04/11/08 SMI"
+
+ 
+# 15
+
+# 19
+
+ 
+# 29
+
+# 84
+
+# 86
+
+# 88
+
+ 
+# 92
+
+# 100
+
+
+# 105
+
+# 1 "/usr/include/sys/isa_defs.h"
+ 
+# 5
+
+# 8
+
+#ident	"@(#)isa_defs.h	1.29	08/06/06 SMI"
+
+ 
+# 192
+
+# 196
+
+ 
+# 396
+
+ 
+# 403
+
+ 
+# 413
+
+ 
+# 434
+
+ 
+# 443
+
+ 
+# 449
+
+ 
+# 458
+
+# 460
+
+ 
+# 468
+
+ 
+# 498
+
+ 
+# 505
+
+# 509
+
+# 513
+
+# 13 "/usr/include/sys/feature_tests.h"
+
+# 17
+
+ 
+# 31
+
+ 
+# 62
+
+# 66
+
+ 
+# 111
+
+# 118
+
+ 
+# 122
+
+# 126
+
+ 
+# 166
+
+ 
+# 194
+
+ 
+# 245
+
+ 
+# 279
+
+ 
+# 303
+
+ 
+# 323
+
+ 
+# 339
+
+ 
+# 352
+
+ 
+# 358
+
+ 
+# 364
+
+ 
+# 370
+
+# 374
+
+# 31 "/usr/include/iso/stdlib_iso.h"
+
+# 35
+
+# 37
+extern unsigned char	__ctype[];
+# 43
+
+# 47
+
+typedef	struct {
+	int	quot;
+	int	rem;
+} div_t;
+
+typedef struct {
+	long	quot;
+	long	rem;
+} ldiv_t;
+
+# 63
+typedef unsigned int    size_t;		 
+# 66
+
+# 74
+
+# 78
+
+ 
+# 99
+typedef long	wchar_t;
+# 104
+
+# 106
+
+extern void abort(void) ;
+extern int abs(int);
+extern int atexit(void (*)(void));
+extern double atof(const char *);
+extern int atoi(const char *);
+extern long int atol(const char *);
+extern void *bsearch(const void *, const void *, size_t, size_t,
+	int (*)(const void *, const void *));
+# 121
+extern void *calloc(size_t, size_t);
+extern div_t div(int, int);
+extern void exit(int)
+	;
+extern void free(void *);
+extern char *getenv(const char *);
+extern long int labs(long);
+extern ldiv_t ldiv(long, long);
+extern void *malloc(size_t);
+extern int mblen(const char *, size_t);
+extern size_t mbstowcs(wchar_t *, const char *,
+	size_t);
+extern int mbtowc(wchar_t *, const char *, size_t);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+# 140
+extern int rand(void);
+extern void *realloc(void *, size_t);
+extern void srand(unsigned int);
+extern double strtod(const char *, char **);
+extern long int strtol(const char *, char **, int);
+extern unsigned long int strtoul(const char *,
+	char **, int);
+extern int system(const char *);
+extern int wctomb(char *, wchar_t);
+extern size_t wcstombs(char *, const wchar_t *,
+	size_t);
+
+# 158
+
+# 191
+
+# 195
+
+# 199
+
+# 1 "/usr/include/iso/stdlib_c99.h"
+ 
+# 5
+
+ 
+# 16
+
+# 19
+
+#ident	"@(#)stdlib_c99.h	1.2	04/03/29 SMI"
+
+# 25
+
+ 
+# 33
+
+# 35
+typedef struct {
+	long long	quot;
+	long long	rem;
+} lldiv_t;
+# 40
+
+# 42
+
+# 45
+
+extern void _Exit(int);
+extern float strtof(const char *, char **);
+extern long double strtold(const char *, char **);
+
+# 51
+extern long long atoll(const char *);
+extern long long llabs(long long);
+extern lldiv_t lldiv(long long, long long);
+extern long long strtoll(const char *, char **,
+	int);
+extern unsigned long long strtoull(const char *,
+	char **, int);
+# 59
+
+# 61
+
+# 81
+
+# 85
+
+# 20 "/usr/include/stdlib.h"
+
+# 24
+
+ 
+# 62
+
+# 66
+
+# 72
+typedef long	uid_t;			 
+# 75
+
+# 77
+
+ 
+# 88
+
+ 
+# 99
+
+# 103
+extern int rand_r(unsigned int *);
+# 105
+
+extern void _exithandle(void);
+
+# 111
+extern double drand48(void);
+extern double erand48(unsigned short *);
+extern long jrand48(unsigned short *);
+extern void lcong48(unsigned short *);
+extern long lrand48(void);
+extern long mrand48(void);
+extern long nrand48(unsigned short *);
+extern unsigned short *seed48(unsigned short *);
+extern void srand48(long);
+extern int putenv(char *);
+extern void setkey(const char *);
+# 123
+
+ 
+# 140
+typedef int	ssize_t;	 
+# 143
+
+extern void swab(const char *, char *, ssize_t);
+# 146
+
+# 150
+extern int	mkstemp(char *);
+# 152
+
+# 155
+extern int	mkstemp64(char *);
+# 157
+
+# 161
+extern long a64l(const char *);
+extern char *ecvt(double, int, int *, int *);
+extern char *fcvt(double, int, int *, int *);
+extern char *gcvt(double, int, char *);
+extern int getsubopt(char **, char *const *, char **);
+extern int  grantpt(int);
+extern char *initstate(unsigned, char *, size_t);
+extern char *l64a(long);
+extern char *mktemp(char *);
+extern char *ptsname(int);
+extern long random(void);
+extern char *realpath(const char *, char *);
+extern char *setstate(const char *);
+extern void srandom(unsigned);
+extern int  unlockpt(int);
+ 
+# 178
+extern int ttyslot(void);
+extern void *valloc(size_t);
+# 182
+
+# 186
+extern int posix_openpt(int);
+extern int setenv(const char *, const char *, int);
+extern int unsetenv(const char *);
+# 190
+
+# 193
+extern void closefrom(int);
+extern int dup2(int, int);
+extern int fdwalk(int (*)(void *, int), void *);
+extern char *qecvt(long double, int, int *, int *);
+extern char *qfcvt(long double, int, int *, int *);
+extern char *qgcvt(long double, int, char *);
+extern char *getcwd(char *, size_t);
+extern const char *getexecname(void);
+extern char *getlogin(void);
+extern int getopt(int, char *const *, const char *);
+extern char *optarg;
+extern int optind, opterr, optopt;
+extern char *getpass(const char *);
+extern char *getpassphrase(const char *);
+extern int getpw(uid_t, char *);
+extern int isatty(int);
+extern void *memalign(size_t, size_t);
+extern char *ttyname(int);
+
+# 213
+extern char *lltostr(long long, char *);
+extern char *ulltostr(unsigned long long, char *);
+# 216
+
+# 218
+
+# 313
+
+# 317
+
+# 1 "/usr/include/stdio.h"
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+# 12
+
+ 
+# 16
+
+# 19
+
+#ident	"@(#)stdio.h	1.84	04/09/28 SMI"
+
+# 1 "/usr/include/sys/feature_tests.h"
+ 
+# 5
+
+# 23 "/usr/include/stdio.h"
+
+# 27
+
+ 
+# 34
+
+ 
+# 47
+
+ 
+# 60
+
+# 62
+
+# 66
+
+# 1 "/usr/include/iso/stdio_iso.h"
+ 
+# 5
+
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+# 24
+
+ 
+# 28
+
+# 31
+
+#ident	"@(#)stdio_iso.h	1.8	05/08/16 SMI"
+
+# 1 "/usr/include/sys/feature_tests.h"
+ 
+# 5
+
+# 1 "/usr/include/sys/va_list.h"
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+# 12
+
+# 15
+
+#ident	"@(#)va_list.h	1.15	04/11/19 SMI"
+
+ 
+# 37
+
+ 
+# 50
+
+# 1 "/usr/include/sys/isa_defs.h"
+ 
+# 5
+
+# 52 "/usr/include/sys/va_list.h"
+
+# 56
+
+# 62
+
+# 64
+
+# 67
+
+# 74
+
+# 108
+
+typedef  void *__va_list;
+
+# 112
+
+# 116
+
+# 1 "/usr/include/stdio_tag.h"
+ 
+# 5
+
+# 8
+
+#ident	"@(#)stdio_tag.h	1.4	04/09/28 SMI"
+
+# 14
+
+# 21
+typedef struct  __FILE __FILE;
+# 23
+
+# 27
+
+# 1 "/usr/include/stdio_impl.h"
+ 
+# 5
+
+# 8
+
+#ident	"@(#)stdio_impl.h	1.15	07/03/05 SMI"
+
+# 1 "/usr/include/sys/isa_defs.h"
+ 
+# 5
+
+# 12 "/usr/include/stdio_impl.h"
+
+# 16
+
+# 28
+
+struct  __FILE	 
+{
+# 35
+	int		_cnt;	 
+	unsigned char	*_ptr;	 
+# 38
+	unsigned char	*_base;	 
+	unsigned char	_flag;	 
+	unsigned char	_file;  
+				 
+	unsigned	__orientation:2;  
+	unsigned	__ionolock:1;	 
+	unsigned	__seekable:1;	 
+	unsigned	__extendedfd:1;	 
+	unsigned	__xf_nocheck:1;	 
+	unsigned	__filler:10;
+};
+
+# 51
+
+# 55
+
+# 38 "/usr/include/iso/stdio_iso.h"
+
+ 
+# 46
+
+# 50
+
+# 52
+ 
+# 58
+typedef	long long	__longlong_t;
+# 67
+
+# 71
+
+# 74
+typedef	__FILE FILE;
+# 76
+
+# 85
+
+# 87
+typedef long		fpos_t;
+# 91
+
+# 95
+
+# 103
+
+# 105
+
+ 
+# 117
+
+# 119
+
+# 125
+
+# 130
+
+# 134
+
+# 137
+
+# 142
+
+# 144
+
+# 146
+extern __FILE	__iob[ 20 ];
+# 156
+
+# 160
+
+# 186
+
+# 188
+
+extern int	remove(const char *);
+extern int	rename(const char *, const char *);
+extern FILE	*tmpfile(void);
+extern char	*tmpnam(char *);
+extern int	fclose(FILE *);
+extern int	fflush(FILE *);
+extern FILE	*fopen(const char *, const char *);
+extern FILE	*freopen(const char *,
+			const char *, FILE *);
+extern void	setbuf(FILE *, char *);
+extern int	setvbuf(FILE *, char *, int,
+			size_t);
+ 
+extern int	fprintf(FILE *, const char *, ...);
+ 
+extern int	fscanf(FILE *, const char *, ...);
+ 
+extern int	printf(const char *, ...);
+ 
+extern int	scanf(const char *, ...);
+ 
+extern int	sprintf(char *, const char *, ...);
+ 
+extern int	sscanf(const char *,
+			const char *, ...);
+extern int	vfprintf(FILE *, const char *,
+			__va_list);
+extern int	vprintf(const char *, __va_list);
+extern int	vsprintf(char *, const char *,
+			__va_list);
+extern int	fgetc(FILE *);
+extern char	*fgets(char *, int, FILE *);
+extern int	fputc(int, FILE *);
+extern int	fputs(const char *, FILE *);
+# 225
+extern int	getc(FILE *);
+extern int	putc(int, FILE *);
+# 230
+extern int	getchar(void);
+extern int	putchar(int);
+# 233
+extern char	*gets(char *);
+extern int	puts(const char *);
+extern int	ungetc(int, FILE *);
+extern size_t	fread(void *, size_t, size_t,
+	FILE *);
+extern size_t	fwrite(const void *, size_t, size_t,
+	FILE *);
+# 241
+extern int	fgetpos(FILE *, fpos_t *);
+extern int	fsetpos(FILE *, const fpos_t *);
+# 244
+extern int	fseek(FILE *, long, int);
+extern long	ftell(FILE *);
+extern void	rewind(FILE *);
+# 249
+extern void	clearerr(FILE *);
+extern int	feof(FILE *);
+extern int	ferror(FILE *);
+# 253
+extern void	perror(const char *);
+
+# 256
+extern int	__filbuf(FILE *);
+extern int	__flsbuf(int, FILE *);
+# 259
+
+# 310
+
+# 314
+
+# 316
+
+# 318
+
+# 338
+
+# 340
+
+# 342
+
+# 352
+
+# 366
+
+# 368
+
+# 370
+
+# 374
+
+# 68 "/usr/include/stdio.h"
+
+ 
+# 76
+
+ 
+# 131
+
+ 
+# 1 "/usr/include/iso/stdio_c99.h"
+ 
+# 5
+
+ 
+# 16
+
+# 19
+
+#ident	"@(#)stdio_c99.h	1.2	04/03/29 SMI"
+
+# 25
+
+ 
+# 33
+
+# 36
+
+# 52
+
+# 54
+extern int vfscanf(FILE *, const char *, __va_list);
+extern int vscanf(const char *, __va_list);
+extern int vsscanf(const char *, const char *,
+		__va_list);
+# 68
+extern int snprintf(char *, size_t, const char *,
+	...);
+extern int vsnprintf(char *, size_t, const char *,
+	__va_list);
+# 76
+
+# 78
+
+# 82
+
+# 137 "/usr/include/stdio.h"
+
+# 141
+
+# 146
+typedef long		off_t;
+# 154
+typedef __longlong_t	off64_t;
+# 159
+
+# 164
+typedef __longlong_t	fpos64_t;
+# 167
+
+ 
+# 177
+
+# 180
+
+# 182
+
+ 
+# 187
+
+# 189
+
+# 193
+
+# 196
+
+# 198
+extern unsigned char	 _sibuf[], _sobuf[];
+# 200
+
+ 
+# 228
+
+# 230
+extern unsigned char	*_bufendtab[];
+extern FILE		*_lastbuf;
+# 233
+
+ 
+# 248
+
+# 250
+
+# 254
+extern char	*tmpnam_r(char *);
+# 256
+
+# 259
+extern void setbuffer(FILE *, char *, size_t);
+extern int setlinebuf(FILE *);
+# 262
+
+ 
+# 268
+
+extern FILE	*fdopen(int, const char *);
+extern char	*ctermid(char *);
+extern int	fileno(FILE *);
+
+# 274
+
+ 
+# 289
+
+ 
+# 295
+extern FILE	*popen(const char *, const char *);
+extern char	*tempnam(const char *, const char *);
+extern int	pclose(FILE *);
+# 299
+extern int	getsubopt(char **, char *const *, char **);
+# 301
+
+ 
+# 304
+extern char	*cuserid(char *);
+extern int	getopt(int, char *const *, const char *);
+extern char	*optarg;
+extern int	optind, opterr, optopt;
+extern int	getw(FILE *);
+extern int	putw(int, FILE *);
+# 311
+
+# 313
+
+ 
+# 318
+extern int	fseeko(FILE *, off_t, int);
+extern off_t	ftello(FILE *);
+# 321
+
+ 
+# 328
+extern FILE	*fopen64(const char *, const char *);
+extern FILE	*freopen64(const char *, const char *, FILE *);
+extern FILE	*tmpfile64(void);
+extern int	fgetpos64(FILE *, fpos64_t *);
+extern int	fsetpos64(FILE *, const fpos64_t *);
+extern int	fseeko64(FILE *, off64_t, int);
+extern off64_t	ftello64(FILE *);
+# 336
+
+# 409
+
+# 411
+
+# 436
+
+# 438
+
+# 442
+
+# 5 "stcopy.c"
+
+int main (int argc, char **argv)
+{
+	FILE *fd1,*fd2;		 
+	int c;				 
+
+	if ((fd1=fopen(argv[1],"r")) ==  0 ) {
+		puts("open1");
+		exit(1);
+		}
+
+	if ((fd2=fopen(argv[2],"w"))==  0 ) {
+		puts("open2");
+		exit(1);
+		}
+
+
+	while ((c= ( -- ( fd1 ) -> _cnt < 0 ? __filbuf ( fd1 ) : ( int ) * ( fd1 ) -> _ptr ++ )) !=  ( - 1 ) )
+		 ( -- ( fd2 ) -> _cnt < 0 ? __flsbuf ( ( c ) , ( fd2 ) ) : ( int ) ( * ( fd2 ) -> _ptr ++ = ( unsigned char ) ( c ) ) );
+
+
+fclose(fd2);
+}
+#ident "acomp: Sun C 5.9 SunOS_sparc Patch 124867-12 2009/11/22"

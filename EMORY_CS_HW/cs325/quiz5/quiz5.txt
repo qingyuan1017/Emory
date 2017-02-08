@@ -1,0 +1,6 @@
+Quiz5
+To perform binary regression, we need to find one hyper-plane. How many hyper-planes do we need to find to perform multi-class regression? How many hyper-planes does our equation for P(c|x) create? Explain your answer.
+
+Answer: In order to perform the multi-class regression, we need to create k hyper_planes. For every P(c|x) we have a hyperplane and the number of c we have is k. Every p(c|x) seperate a c from other c. So totally we need to create k hyper_planes to perfrom the regression.
+
+Qingyuan Zhang

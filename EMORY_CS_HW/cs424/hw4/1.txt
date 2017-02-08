@@ -1,0 +1,38 @@
+; This example program checks if the input string is 0^(2n)    n>=0
+; Input: a string of 0's 
+
+
+; Machine starts in state 0.
+
+; State 1: 
+1 0 _ r 2
+1 x * r reject
+1 _ * r reject     ; Empty input
+
+; State 2
+2 0 x r 3
+2 x * r 2
+2 _ * r accept
+
+; State 3
+3 0 * r 4
+3 x * r 3
+3 _ * l 5
+
+; State 4
+4 0 x r 3
+4 x * r 4
+4 _ * r reject
+
+; State 5
+5 0 * l 5
+5 x * l 5
+5 _ * r 2
+
+
+accept * : r accept2
+accept2 * ) * halt-accept
+
+reject _ : r reject2
+reject * _ l reject
+reject2 * ( * halt-reject

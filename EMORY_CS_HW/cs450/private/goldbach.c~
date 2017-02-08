@@ -1,0 +1,210 @@
+/* Short code  sample to 
+
+	define a new type with typedef
+	illustrate struct's
+	illustrate dynamic allocation with malloc
+	illustrate stdio style input
+*/
+	
+#include <stdlib.h>
+#include <stdio.h>
+
+
+typedef struct _seg {  /* definition of new type "seg" */
+    int  bits[256];
+    struct _seg  *next,*prev;        
+      }seg  ;
+
+#define BITSPERSEG  (8*256*sizeof(int))
+
+void clearbits(seg *, int);
+seg * whichseg(seg *ptr,int N);
+int whichint(int N);
+int whichbit(int N);
+void sieveOfE( int N );
+seg *head;
+void printPrimes(int N);
+
+void main(int argc, char *argv[]) {
+
+	seg *pt;
+	int	 i;
+	int howmany;
+
+
+	if (argc == 2) sscanf(argv[1],"%d",&howmany);
+		else scanf("%d",&howmany);
+	howmany =  (howmany +BITSPERSEG*2 -1)/(BITSPERSEG*2);
+
+
+
+	head= (  seg * ) malloc(sizeof(seg));
+	pt=head;
+	for (i=1;i<howmany;i++) { //Just Forward Links for Now
+		pt->next = (  seg *) malloc(sizeof (seg)); 
+		pt=pt->next;
+		}
+
+	printf("Done allocating %d nodes\n",i);
+
+	/* clear all bits */
+
+	clearbits(head, howmany);
+	 sieveOfE(160);
+	printPrimes(160);
+	
+}	
+
+void	clearbits(seg *ptr , int num) { 
+
+	int i,j;
+
+	for (i=0; i< num; i++) {
+
+		for (j=0; j<= 255; j++) {
+			ptr->bits[j]=0;
+			}
+		ptr=ptr->next;
+	}
+}
+
+
+
+seg * whichseg(seg *ptr,int N){
+	int i;
+	int segnumber = N/BITSPERSEG;
+	printf("The segment number is %d \n",segnumber);
+	for(i=0; i<segnumber; i++){
+	ptr = ptr->next;
+	return ptr;	
+}
+}
+
+int whichint(int N){
+	int i,segnumber;
+	segnumber = N/BITSPERSEG;
+	i   = (N-(BITSPERSEG*(segnumber)))/32;
+	printf("The int number is %d \n",i);
+	return i;
+}
+
+int whichbit(int N){
+	int pos,segnumber;
+	segnumber = N/BITSPERSEG;
+	pos = (N-(BITSPERSEG*(segnumber)))%32; 
+	printf("The bit number is %d \n",pos);
+	return pos;
+}
+
+
+void setBit(int N)
+{
+    
+     seg * g;
+    int i; //index of bits[]
+    int j;
+    int pos;
+    int segnumber;
+
+    
+    segnumber = N/8192;
+    i   = (N-(8192*(segnumber)))/32;               //index
+    pos = (N-(8192*(segnumber)))%32;              // position within bit[i]
+
+    g = head;
+    for ( j = 0; j < segnumber; j++)
+        g = g->next;
+
+    
+    g->bits[i]= g -> bits[i] | (1 << pos) ;////////////////////////////////////////////
+}
+
+int testBitIs0( int N){    //the input n is the bit position in the segmented bit
+                            //array.
+                            //The bit position n represents the number (2*n+1)
+    seg * g;
+    int i; //index of bits[]
+    int j; 
+    int r;
+    int pos;
+    int segnumber;
+    
+    	
+    	 segnumber = N/8192;
+    i   = (N-(8192*(segnumber)))/32;               //index
+    pos = (N-(8192*(segnumber)))%32;              // position within bit[i]
+    
+    g = head;
+    for ( j = 0; j < segnumber; j++){
+        g = g->next;
+    }
+
+    r = g -> bits[i] & (1 << pos) ; // Get bit at pos in prime[i]////////////////////////
+
+   if ( r == 0 )
+      return 1;        // return 1 to indicate that n is still prime
+   else
+      return 0;
+}
+
+void sieveOfE( int N )
+{
+   int i, j, k;
+
+   /* ------------------------
+      Initialize prime[]
+      ------------------------ */
+
+// PrintBits(N);
+
+   /* ------------------------
+      Perform the sieve of E
+      ------------------------ */
+   k = 2;   // Start with 2 to find all primes
+
+   while ( k*k <= N )
+   {
+//    PrintBits(N);
+      /* ----------------------------------------
+         Starting from k, find next 
+         prime number number i
+
+         A prime number is detected by:  
+
+                      isPrime[i] == true
+         ---------------------------------------- */
+
+
+	
+
+	for ( i = k; i <= N; i++ )
+          if ( testBitIs0(i) )
+             break;             // Found !
+
+      /* --------------------------------------
+         Set:  isPrime[2*i] = false,
+               isPrime[3*i] = false,
+               ....
+               (upto isPrime[N])
+         -------------------------------------- */
+      for ( j = 2*i; j <= N; j = j + i ){
+	printf("%d \n",j);
+	  setBit(j);
+}
+
+      k = i+1;    // Set up k for next iteration !!!   
+   }
+}
+
+void printPrimes(int N){
+    int i;
+    
+    for ( i = 2; i <= N; i++ )
+        if ( testBitIs0(i) )
+            printf("%d ", i );
+    printf("\n\n");
+}
+
+
+
+

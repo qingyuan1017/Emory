@@ -1,0 +1,161 @@
+#include <ar.h>
+#include <dirent.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/file.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <time.h>
+#include <unistd.h>
+
+void qflag(int memNum, char **argv);
+void fillHeader(char *mem, char *arch);
+void fillBody(char *mem, char *arch);
+
+int main (int argc, char **argv){
+	//test too few command line args
+	if (argc < 3){
+		usage(argv);
+        exit(EXIT_FAILURE);
+	}
+	//test key
+	if(strcmp(argv[1], "q") == 0)
+		qflag(argc -3, argv);
+	/*else if(strcmp(argv[1], "v") == 0)
+		vflag(argv);
+	else if(strcmp(argv[1], "t") == 0)
+		tflag(argc - 3, argv); 	//argc - 3 gives number of members
+	else if(strcmp(argv[1], "x") == 0)
+		xflag(argc - 3, argv);
+	else if(strcmp(argv[1], "d") == 0)
+		dflag(argc - 3, argv);
+	else if(strcmp(argv[1], "A") == 0)
+		Aflag(argc - 3, argv);*/
+	else {
+		printf("Error, key not recognized.\n");
+		usage(argv);
+		exit(EXIT_FAILURE);
+	}
+
+	return 0;
+}
+
+
+void qflag(int memNum, char **argv){
+	int fd = 0;
+	int i;
+	//check if the archive file exist
+		if( access( argv[2], F_OK ) == -1 ){	
+		fd = open(argv[2], O_RDWR | O_CREAT, 0666);
+		if (fd == -1)   
+		{       perror("Can't open input file");
+			exit(EXIT_FAILURE);
+		}
+			//creating !<arch>\n into the new archive file.
+		write(fd, ARMAG, SARMAG);
+		printf("ar: creating %s\n", argv[2]);
+	}
+	
+	for (i = 3; i < memNum+3; i++){
+	char *mem = argv[i];
+	if(access(mem, F_OK) == -1){
+			printf("myar: %s: File does not exist.\n", mem);
+			exit(EXIT_FAILURE);
+		}
+
+		fillHeader(mem, argv[2]);
+		fillBody(mem, argv[2]);}
+
+}
+
+void fillHeader(char *mem, char *arch){
+	struct stat st;
+	if (stat(mem, &st) == -1){
+		printf("ERROR: Stat failed.");
+		exit(EXIT_FAILURE);
+	}
+	char term[1] = {'/'};	//terminating char for file member name
+	char fill[1] = {' '};	//whitespace for filling headers 
+	int fd = open(arch, O_RDWR, 0);	//open arch file
+	int pos = 0;
+	pos = lseek(fd, 0, 2);		//seek to end of arch file
+	if(strlen(mem) + 1 > 16){
+		printf("ERROR: File name too long.");
+		exit(EXIT_FAILURE);
+	}
+	//write name
+	//printf("Mem=%s|\n", mem);
+	write(fd, mem, strlen(mem));
+	//printf("Sizeof=%d\n", strlen(mem));
+	write(fd, term, 1);
+	int sxtn = strlen(mem) + 1;
+	while(sxtn < 16){
+		write(fd, fill, 1);
+		sxtn++;
+	}
+	//write date
+	time_t modTime = st.st_mtime;
+	struct tm *lt;
+	lt = localtime(&modTime);
+	char date[12] = {0};
+	strftime(date, 12, "%s", lt);
+	//printf("date-%s, sizeof date-%d\n", date, sizeof(date));
+	write(fd, date, 10); //write 10 digit date
+	write(fd, fill, 1); //add space
+	write(fd, fill, 1); //add space - now at size 12
+	//write uid
+	char uid[6] = {0};
+	int uidI = (int)st.st_uid;
+	sprintf(uid, "%d ", uidI);
+	write(fd, uid, 6); //write 6 bytes for uid
+	//write gid
+	char gid[6] = {0};
+	int gidI = (int)st.st_gid;
+	sprintf(gid, "%d ", gidI);
+	write(fd, gid, 6); //write 6 bytes for gid
+	//write mode
+	char mode[8] = {0};
+	int modeI = (int)st.st_mode;
+	sprintf(mode, "%o  ", modeI); //o for octal
+	write(fd, mode, 8); //write 8 bytes for mode
+	//write size
+	char size[10] = {0};
+	int sizeI = (int)st.st_size;
+	sprintf(size, "%d", sizeI);
+	write(fd, size, (int)strlen(size)); //write bytes for length of number (how many digits)
+	int ten = (int)strlen(size);
+	while(ten < 10){					//fill rest of 10 bytes with whitespace
+		write(fd, fill, 1);
+		ten++;
+	}
+	//write trailer string
+	write(fd, ARFMAG, 2);
+	//close file
+	close(fd);
+}
+
+void fillBody(char *mem, char *arch){
+	int afd = open(arch, O_RDWR, 0); //open arch file
+	int mfd = open(mem, O_RDONLY, 0); //open member file
+	int pos = 0;
+	pos = lseek(afd, 0, 2); 		//seek to end of arch file
+	struct stat st;
+	if (stat(mem, &st) == -1){		//get stat data
+		printf("ERROR: Stat failed.");
+		exit(EXIT_FAILURE);
+	}
+	int size = 0;
+	size = st.st_size; 				//size of mem file
+	char temp[size + 1];		//temp buffer
+	char nwl[1] = {'\n'};		//newline char
+	read(mfd, temp, size);
+	write(afd, temp, size);
+	if(size % 2 != 0){			//adding newline char if odd
+		write(afd, nwl, 1);
+	}
+	close(mfd);					//close files
+	close(afd);
+}
+

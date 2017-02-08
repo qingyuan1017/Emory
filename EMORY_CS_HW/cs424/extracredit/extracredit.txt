@@ -1,0 +1,20 @@
+program -> stmts <eof>
+stmts -> statement stmts
+stmts -> ~
+statement -> assignment
+statement -> if-stmt
+statement -> loop
+statement -> block
+statement -> skip
+assignment -> id = expr ;
+if-stmt -> if ( bexpr ) statement else statement
+loop -> while ( bexpr ) statement
+block -> { stmts } 
+skip -> ;
+expr -> 0[01]*
+expr -> 1[01]*
+bexpr -> id op id
+bexpr -> id op expr
+id -> v[abcd]*
+op -> <
+op -> >

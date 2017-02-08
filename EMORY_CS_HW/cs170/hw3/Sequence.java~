@@ -1,0 +1,218 @@
+import java.util.Scanner;
+
+
+public class Sequence {
+	
+	public static void main(String [] args){
+		
+		System.out.println(parseChromatogram(""));
+		
+		
+		Scanner input = new Scanner(System.in);   
+		
+		System.out.println("   Menu");
+		System.out.println("p: parsing a chromatogram");
+		System.out.println("s: subsequence of a DNA");
+		
+		System.out.println("");
+		System.out.print("Please enter a menu option: ");
+
+		
+		String option = input.next();
+		char choiceletter = option.charAt(0);
+		
+		if(choiceletter == 'p'){    
+			System.out.print("Please enter a chromatogram: "); 
+			String gram = input.next();
+			
+			printInfo(parseChromatogram(gram));
+				
+			
+		} else if(choiceletter == 's'){
+			System.out.print("Please enter a DNA sequence: "); 
+			 String DNA = input.next();
+			 
+			 System.out.print("Please enter the first marker"); 
+			 String fstmarker = input.next();
+			
+			 System.out.print("Please enter the second marker"); 
+			 String sndmarker = input.next();
+			 
+			 
+			 printInfo(findSubsequence(DNA,fstmarker,sndmarker));
+	
+			
+			
+		} 
+		else{
+			
+			System.out.print("Bad input.");
+		}
+	}
+	
+	public static int countChar(String word, char letter){
+		int count = 0;
+		int n = word.length();
+		for(int i = 0; i<n; i++){
+			if(word.charAt(i) == letter){
+				count++;
+				
+			}
+		}
+		
+		return count;
+	}
+	
+	public static String parseChromatogram(String chroma){
+		
+		int n = chroma.length();
+		int begin = 0;
+		int end = n;
+		System.out.println(end);
+		for(int i = 0; i<n; i++){
+			if(chroma.charAt(i) != ' ' ){
+				begin = i;
+				break;
+			}
+			if(i==0){
+				begin =n;
+			}
+			
+			
+		}
+		for(int j = n-1; j>=0; j--){
+				if(chroma.charAt(j) != ' ' ){
+					end = j;
+					
+					break;
+				}
+				
+				
+				if(j==0){
+					end =0;
+				}
+				
+		}
+		System.out.println(begin);
+		System.out.println(end);
+		
+		if(end <= begin){
+			System.out.println("bad input");
+			return chroma;
+		}
+		
+	
+		String gram = chroma.substring(0,begin);
+		
+		for(int i= begin; i<= end; i++){
+			if(chroma.charAt(i)=='r'){
+				gram = gram + 'T';
+			}
+			else if(chroma.charAt(i)=='g'){
+				gram = gram + 'A';
+			}
+			else if(chroma.charAt(i)=='b'){
+				gram = gram + 'C';
+			}
+			else if(chroma.charAt(i)=='k'){
+				gram = gram + 'G';
+			}
+			else{
+				gram = gram+'?';
+			}
+			
+			
+		}
+		
+		gram = gram + chroma.substring(end+1,n);
+		
+		return gram;
+	}
+	
+	public static void printInfo(String DNA){
+		System.out.println(DNA);
+		int n = DNA.length();
+		System.out.println("Length: "+n);
+		System.out.println("A: "+countChar(DNA, 'A'));
+		System.out.println("T: "+countChar(DNA, 'T'));
+		System.out.println("C: "+countChar(DNA, 'C'));
+		System.out.println("G: "+countChar(DNA, 'G'));
+		System.out.println("?: "+countChar(DNA, '?'));
+	    
+		
+	}
+	
+	public static int findIndex(String string1, String string2){
+		int m = string1.length();
+		int n = string2.length();
+		if(n> m){
+			return -1;
+		}
+		
+		
+		char [] first = new char [m];
+		char [] second = new char[n];
+		for(int i = 0; i<m;i++){
+			first[i] = string1.charAt(i);
+		}
+		
+		
+		
+		for(int i = 0; i<n;i++){
+			second[i] = string2.charAt(i);
+		}
+		
+		
+		for(int i = 0; i<= m-n; i++){
+			boolean a = true;
+			for(int j = 0; j< n;j++){
+				if(first[i+j] != second[j]){
+					
+					a = false;}
+					
+			}
+			
+			if(a == true){
+				
+				return i;
+			}
+			
+		}
+		
+		return -1;
+		
+		
+		
+	}
+	
+	public static String findSubsequence(String string1, String string2, String string3){
+		
+		
+		int first = findIndex(string1,string2);
+		
+		
+		int second = findIndex(string1,string3);
+		
+		if(first == -1){
+			return "";
+		}
+		
+		else if(second == -1){
+			return "";
+		}
+		
+		
+		first = first + string2.length();
+		
+		if(first-1 >= second){
+			return "";
+		}
+		
+		else{
+			return string1.substring(first-string2.length(),second+string3.length());
+		}
+		
+		
+	}
+}
+

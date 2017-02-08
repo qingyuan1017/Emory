@@ -1,0 +1,76 @@
+; This example program checks if the input string is a^(i)b^(j)c^(k)    where n*j = k i,j,k>=1
+; Input: a string of a's b's and c's
+
+; Machine starts in state 0.
+
+; State 0: read the leftmost symbol
+0 a x r 1a
+0 b * * reject
+0 c * * reject
+0 _ * * reject    
+
+; State 1a, 1b, 1c: find whether a+b+c+
+1a a * r 1a
+1a b * r 1b
+1a c * * reject
+1a _ * * reject
+
+1b a * * reject
+1b b * r 1b
+1b c * r 1c
+1b _ * * reject
+
+1c a * * reject
+1c b * * reject
+1c c * r 1c
+1c _ * l 2
+
+; State 2 return to left-hand end
+2 a * l 2
+2 b * l 2
+2 c * l 2
+2 x * r 3a !
+
+; State 3 cross off an a and scan to right,shuttle between the b and c
+3a a * r 3a
+3a b y r 3b
+3a c * * reject
+3a z * l 4a !
+3a _ * * reject
+
+3b a * * reject
+3b b * r 3b
+3b c z l 3l
+3b z * r 3b
+3b _ * * reject
+
+3l a * * reject
+3l b * l 3l
+3l z * l 3l
+3l c * * reject
+3l y * r 3a 
+
+;State 4 restore b and go back to cross off a
+4a a * l 4a
+4a b * * reject
+4a y b l 4a
+4a z * * reject
+4a x * r 4b
+
+4b a x r 3a
+4b b * r 5
+
+;State 5 no a to cross check whether c has been all cross off
+5 a * * reject
+5 b * r 5
+5 c * * reject
+5 z * r 5
+5 _ * * accept
+
+
+accept * : r accept2
+accept2 * ) * halt-accept
+
+reject _ : r reject2
+reject * _ l reject
+reject2 * ( * halt-reject

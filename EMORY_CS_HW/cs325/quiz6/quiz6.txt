@@ -1,0 +1,9 @@
+Quiz 6
+
+Because  w = w + delta
+
+and add s time means times s
+
+As a result the above method is equivalent to the naive approach below
+
+Qingyuan Zhang

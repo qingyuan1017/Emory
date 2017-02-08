@@ -1,0 +1,13 @@
+For this project, I improve the greedy Tagger method in order to generate a better result.
+
+For the classifier, I use the professor Choi's Naive Bayes and improve the score from 87% to 94%
+
+I improve the get the feature method in my QingTagger in following aspects:
+
+1, add the feature for the previous tag, previous word and next word.
+
+2, add the upper case and number to the feature
+
+3, add some common prefixes and suffixes to the feature.
+
+Qingyuan Zhang

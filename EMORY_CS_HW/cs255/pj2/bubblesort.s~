@@ -1,0 +1,56 @@
+*I worked on this assignment alone, using only this semester's course materials.   
+*  Qingyuan Zhang
+ xdef BubbleSort
+
+
+BubbleSort:
+******************************************************
+* Write your bubble sort assembler subroutine here
+******************************************************
+
+	move.l D1, n
+	move.l k, D2	*int k=0 at D2
+	move.l d, D6  * int d=0 at D7
+	movea.l D0, A1	
+while1start:	
+	cmp.l #0, D6
+	bne while1end	*while stop if b!=0
+	move.l #1, D6
+	move.l i, D3	*int i=0 at D3	
+	sub.l D2, D1	*n-k
+while2start:
+	cmp.l D1, D3	*while stop if i>=n-k
+	bge while2end	
+	move.l n,D1
+	muls #4, D3
+	move.l 0(A1,D3.w), D4	*A[j]
+	move.l 4(A1,D3.w), D5	*A[j+1]
+	cmp.l D4, D5
+	bge ifend
+	move.l D5, 0(A1,D3.w)
+	move.l D4, 4(A1,D3.w)
+	move.l #0, D6
+ifend:	
+	divs #4, D3
+	add.l #1, D3
+	bra while2start
+while2end:
+	add.l #1, D2
+	bra while1start
+while1end:
+
+	
+
+
+
+	rts
+
+* *****************************************************************************
+* If you need local variables, you can add variable definitions below this line
+* *****************************************************************************
+i:	dc.l	0
+d:	dc.l	0
+k:	dc.l	1
+n:	dc.l 	0
+
+        end

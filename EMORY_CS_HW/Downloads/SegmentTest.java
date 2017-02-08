@@ -1,0 +1,66 @@
+package test.segment;
+
+import java.io.FileInputStream;
+
+import org.junit.Test;
+
+import main.ngrams.Bigram;
+import main.ngrams.Unigram;
+import main.ngrams.model.Backoff;
+import main.ngrams.model.ILanguageModel;
+import main.ngrams.smoothing.DiscountSmoothing;
+import main.ngrams.smoothing.NoSmoothing;
+import main.segment.AbstractSegment;
+import main.segment.QingSegment;
+import main.segment.Segment;
+import main.segment.Sequence;
+
+import main.segment.ZhangSegment;
+import main.utils.IOUtils;
+
+/**
+ * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
+ */
+public class SegmentTest
+{
+	@Test
+	public void test() throws Exception
+	{
+		Unigram unigram = new Unigram(new DiscountSmoothing(0.9));
+		Bigram bigram = new Bigram(new NoSmoothing());
+
+		IOUtils.readUnigrams(unigram, new FileInputStream("C:\\Users\\Qingyuan\\workspace\\cs325\\src\\main\\ngrams\\1grams.txt"));
+		IOUtils.readBigrams (bigram , new FileInputStream("C:\\Users\\Qingyuan\\workspace\\cs325\\src\\main\\ngrams\\2grams.txt"));
+		
+		double unigramWeight = 0.1;
+		ILanguageModel model = new Backoff(unigram, bigram, unigramWeight);
+		AbstractSegment segment = new Segment(model);
+		AbstractSegment Zhangsegment = new ZhangSegment(model,unigram,bigram);
+		
+		/*test(segment, "therealdeal");
+		test(segment, "isitoveryet");
+		test(segment, "isplayingnow");
+		test(segment, "thisiswhoweare");
+		test(segment, "areallygoodjob");
+		*/  
+		
+		test(Zhangsegment, "2thingsthatdontmix");
+		test(Zhangsegment, "10turnons");
+		test(Zhangsegment, "90s");
+		test(Zhangsegment, "100thingsaboutme");
+		test(Zhangsegment, "alliwant");
+		test(Zhangsegment, "annoyingbios");
+		test(Zhangsegment, "aprilfoolsjokes");
+		test(Zhangsegment, "areallygoodejob");
+		test(Zhangsegment, "arelationshipisoverwhen");
+		test(Zhangsegment, "artistseveryonelikesbutidont");
+		test(Zhangsegment, "jinhoishere");
+		test(Zhangsegment, "imetjinho");
+	}
+	
+	void test(AbstractSegment segment, String s)
+	{
+		Sequence sequence = segment.segment(s);
+		System.out.println(sequence.getSequence()+" "+sequence.getMaximumLikelihood());		
+	}
+}

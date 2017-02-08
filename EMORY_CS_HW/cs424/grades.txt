@@ -1,0 +1,9 @@
+HW2 Program: 29/35
+  - Program structure? Indentation?
+  - Using the NFA from the quiz the output FSM should accept
+    the string "aa" but does not.
+
+HW1 Program: 24/25
+  - good program; the more important output is the output program
+  - use a commandline argument for the input file rather than 
+    hard-coding the file name

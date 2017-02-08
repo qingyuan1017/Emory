@@ -1,0 +1,7 @@
+Grade:
+75
+Notes:
+Output correct for first segment
+Fails after first segment with segfault on goldbach and incorrect prime count
+some commenting on functions
+

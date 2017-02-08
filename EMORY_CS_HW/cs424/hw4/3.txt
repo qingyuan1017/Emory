@@ -1,0 +1,2056 @@
+; State 0: read the leftmost symbol
+0 ( ! r 0a
+
+; State 0a find the end of node list
+0a 0 * r 0a
+0a 1 * r 0a
+0a 2 * r 0a
+0a 3 * r 0a
+0a 4 * r 0a
+0a 5 * r 0a
+0a 6 * r 0a
+0a 7 * r 0a
+0a 8 * r 0a
+0a 9 * r 0a
+0a ) @ r 0b
+0a , * r 0a
+
+; State 0b find the start of entry list
+0b ( # r 0c
+
+; State 0c find the end of entry list
+0c 0 * r 0c
+0c 1 * r 0c
+0c 2 * r 0c
+0c 3 * r 0c
+0c 4 * r 0c
+0c 5 * r 0c
+0c 6 * r 0c
+0c 7 * r 0c
+0c 8 * r 0c
+0c 9 * r 0c
+0c ( * r 0c
+0c ) * r 0d
+0c , * r 0c
+
+; State 0d 
+0d ) $ l 1
+0d , * r 0c
+
+; State 1 go back to left
+1 0 * l 1
+1 1 * l 1
+1 2 * l 1
+1 3 * l 1
+1 4 * l 1
+1 5 * l 1
+1 6 * l 1
+1 7 * l 1
+1 8 * l 1
+1 9 * l 1
+1 ( * l 1
+1 ) * l 1
+1 , * l 1
+1 @ * l 1
+1 # * l 1
+1 ! * r 2 !
+
+; State 2 mark the first symbol
+2 0 A r 3a
+2 1 B r 3b
+2 2 C r 3c
+2 3 D r 3d
+2 4 E r 3e
+2 5 F r 3f
+2 6 G r 3g
+2 7 H r 3h
+2 8 I r 3i
+2 9 J r 3j
+
+; State 3a check entry if marked state is 0
+3a 0 * r 3a
+3a 1 * r 3a
+3a 2 * r 3a
+3a 3 * r 3a
+3a 4 * r 3a
+3a 5 * r 3a
+3a 6 * r 3a
+3a 7 * r 3a
+3a 8 * r 3a
+3a 9 * r 3a
+3a , * r 3a
+3a @ * r 3a
+3a # * r 3aa
+3a a * r 3a
+3a b * r 3a
+3a c * r 3a
+3a d * r 3a
+3a e * r 3a
+3a f * r 3a
+3a g * r 3a
+3a h * r 3a
+3a i * r 3a
+3a j * r 3a
+3a A * r 3a
+3a B * r 3a
+3a C * r 3a
+3a D * r 3a
+3a E * r 3a
+3a F * r 3a
+3a G * r 3a
+3a H * r 3a
+3a I * r 3a
+3a J * r 3a
+
+
+3aa ( * r 3aa
+3aa 0 a r 3ab
+3aa 1 * r 3aa
+3aa 2 * r 3aa
+3aa 3 * r 3aa
+3aa 4 * r 3aa
+3aa 5 * r 3aa
+3aa 6 * r 3aa
+3aa 7 * r 3aa
+3aa 8 * r 3aa
+3aa 9 * r 3aa
+3aa , * r 3aa
+3aa ) * r 3aa
+3aa $ * l 5
+
+;3ab judge the node is left of right of the entry
+3ab , *  r 3ac
+3ab ) * l 3ac
+
+3ac a * l 3ac
+3ac 1 * l 4b
+3ac 2 * l 4c
+3ac 3 * l 4d
+3ac 4 * l 4e
+3ac 5 * l 4f
+3ac 6 * l 4g
+3ac 7 * l 4h
+3ac 8 * l 4i
+3ac 9 * l 4j
+3ac , * l 3ac
+
+; State 3b check entry if marked state is 1
+3b 0 * r 3b
+3b 1 * r 3b
+3b 2 * r 3b
+3b 3 * r 3b
+3b 4 * r 3b
+3b 5 * r 3b
+3b 6 * r 3b
+3b 7 * r 3b
+3b 8 * r 3b
+3b 9 * r 3b
+3b , * r 3b
+3b @ * r 3b
+3b a * r 3b
+3b b * r 3b
+3b c * r 3b
+3b d * r 3b
+3b e * r 3b
+3b f * r 3b
+3b g * r 3b
+3b h * r 3b
+3b i * r 3b
+3b j * r 3b
+3b A * r 3b
+3b B * r 3b
+3b C * r 3b
+3b D * r 3b
+3b E * r 3b
+3b F * r 3b
+3b G * r 3b
+3b H * r 3b
+3b I * r 3b
+3b J * r 3b
+3b # * r 3ba
+
+3ba ( * r 3ba
+3ba 0 * r 3ba
+3ba 1 b r 3bb
+3ba 2 * r 3ba
+3ba 3 * r 3ba
+3ba 4 * r 3ba
+3ba 5 * r 3ba
+3ba 6 * r 3ba
+3ba 7 * r 3ba
+3ba 8 * r 3ba
+3ba 9 * r 3ba
+3ba , * r 3ba
+3ba ) * r 3ba
+3ba $ * l 5
+
+3bb , *  r 3bc
+3bb ) * l 3bc
+
+3bc b * l 3bc
+3bc 0 * l 4b
+3bc 2 * l 4c
+3bc 3 * l 4d
+3bc 4 * l 4e
+3bc 5 * l 4f
+3bc 6 * l 4g
+3bc 7 * l 4h
+3bc 8 * l 4i
+3bc 9 * l 4j
+3bc , * l 3bc
+
+; State 3c check entry if marked state is 2
+3c 0 * r 3c
+3c 1 * r 3c
+3c 2 * r 3c
+3c 3 * r 3c
+3c 4 * r 3c
+3c 5 * r 3c
+3c 6 * r 3c
+3c 7 * r 3c
+3c 8 * r 3c
+3c 9 * r 3c
+3c , * r 3c
+3c @ * r 3c
+3c # * r 3ca
+3c a * r 3c
+3c b * r 3c
+3c c * r 3c
+3c d * r 3c
+3c e * r 3c
+3c f * r 3c
+3c g * r 3c
+3c h * r 3c
+3c i * r 3c
+3c j * r 3c
+3c A * r 3c
+3c B * r 3c
+3c C * r 3c
+3c D * r 3c
+3c E * r 3c
+3c F * r 3c
+3c G * r 3c
+3c H * r 3c
+3c I * r 3c
+3c J * r 3c
+
+
+3ca ( * r 3ca
+3ca 0 * r 3ca
+3ca 1 * r 3ca
+3ca 2 c r 3cb
+3ca 3 * r 3ca
+3ca 4 * r 3ca
+3ca 5 * r 3ca
+3ca 6 * r 3ca
+3ca 7 * r 3ca
+3ca 8 * r 3ca
+3ca 9 * r 3ca
+3ca , * r 3ca
+3ca ) * r 3ca
+3ca $ * l 5
+
+3cb , *  r 3cc
+3cb ) * l 3cc
+
+3cc 1 * l 4a
+3cc 0 * l 4b
+3cc c * l 3cc
+3cc 3 * l 4d
+3cc 4 * l 4e
+3cc 5 * l 4f
+3cc 6 * l 4g
+3cc 7 * l 4h
+3cc 8 * l 4i
+3cc 9 * l 4j
+3cc , * l 3cc
+
+3d 0 * r 3d
+3d 1 * r 3d
+3d 2 * r 3d
+3d 3 * r 3d
+3d 4 * r 3d
+3d 5 * r 3d
+3d 6 * r 3d
+3d 7 * r 3d
+3d 8 * r 3d
+3d 9 * r 3d
+3d , * r 3d
+3d @ * r 3d
+3d # * r 3da
+3d a * r 3d
+3d b * r 3d
+3d c * r 3d
+3d d * r 3d
+3d e * r 3d
+3d f * r 3d
+3d g * r 3d
+3d h * r 3d
+3d i * r 3d
+3d j * r 3d
+3d A * r 3d
+3d B * r 3d
+3d C * r 3d
+3d D * r 3d
+3d E * r 3d
+3d F * r 3d
+3d G * r 3d
+3d H * r 3d
+3d I * r 3d
+3d J * r 3d
+
+
+3da ( * r 3da
+3da 0 * r 3da
+3da 1 * r 3da
+3da 2 * r 3da
+3da 3 d r 3db
+3da 4 * r 3da
+3da 5 * r 3da
+3da 6 * r 3da
+3da 7 * r 3da
+3da 8 * r 3da
+3da 9 * r 3da
+3da , * r 3da
+3da ) * r 3da
+3da $ * l 5
+
+3db , *  r 3dc
+3db ) * l 3dc
+
+3dc 1 * l 4a
+3dc 0 * l 4b
+3dc 2 * l 4c
+3dc d * l 3dc
+3dc 4 * l 4e
+3dc 5 * l 4f
+3dc 6 * l 4g
+3dc 7 * l 4h
+3dc 8 * l 4i
+3dc 9 * l 4j
+3dc , * l 3dc
+
+
+3e 0 * r 3e
+3e 1 * r 3e
+3e 2 * r 3e
+3e 3 * r 3e
+3e 4 * r 3e
+3e 5 * r 3e
+3e 6 * r 3e
+3e 7 * r 3e
+3e 8 * r 3e
+3e 9 * r 3e
+3e , * r 3e
+3e @ * r 3e
+3e # * r 3ea
+3e a * r 3e
+3e b * r 3e
+3e c * r 3e
+3e d * r 3e
+3e e * r 3e
+3e f * r 3e
+3e g * r 3e
+3e h * r 3e
+3e i * r 3e
+3e j * r 3e
+3e A * r 3e
+3e B * r 3e
+3e C * r 3e
+3e D * r 3e
+3e E * r 3e
+3e F * r 3e
+3e G * r 3e
+3e H * r 3e
+3e I * r 3e
+3e J * r 3e
+
+
+
+
+3ea ( * r 3ea
+3ea 0 * r 3ea
+3ea 1 * r 3ea
+3ea 2 * r 3ea
+3ea 3 * r 3ea
+3ea 4 e r 3eb
+3ea 5 * r 3ea
+3ea 6 * r 3ea
+3ea 7 * r 3ea
+3ea 8 * r 3ea
+3ea 9 * r 3ea
+3ea , * r 3ea
+3ea ) * r 3ea
+3ea $ * l 5
+
+3eb , *  r 3ec
+3eb ) * l 3ec
+
+3ec 1 * l 4a
+3ec 0 * l 4b
+3ec 2 * l 4c
+3ec 3 * l 4d
+3ec e * l 3ec
+3ec 5 * l 4f
+3ec 6 * l 4g
+3ec 7 * l 4h
+3ec 8 * l 4i
+3ec 9 * l 4j
+3ec , * l 3ec
+
+3f 0 * r 3f
+3f 1 * r 3f
+3f 2 * r 3f
+3f 3 * r 3f
+3f 4 * r 3f
+3f 5 * r 3f
+3f 6 * r 3f
+3f 7 * r 3f
+3f 8 * r 3f
+3f 9 * r 3f
+3f , * r 3f
+3f @ * r 3f
+3f # * r 3fa
+3f a * r 3f
+3f b * r 3f
+3f c * r 3f
+3f d * r 3f
+3f e * r 3f
+3f f * r 3f
+3f g * r 3f
+3f h * r 3f
+3f i * r 3f
+3f j * r 3f
+3f A * r 3f
+3f B * r 3f
+3f C * r 3f
+3f D * r 3f
+3f E * r 3f
+3f F * r 3f
+3f G * r 3f
+3f H * r 3f
+3f I * r 3f
+3f J * r 3f
+
+
+
+
+3fa ( * r 3fa
+3fa 0 * r 3fa
+3fa 1 * r 3fa
+3fa 2 * r 3fa
+3fa 3 * r 3fa
+3fa 4 * r 3fa
+3fa 5 f r 3fb
+3fa 6 * r 3fa
+3fa 7 * r 3fa
+3fa 8 * r 3fa
+3fa 9 * r 3fa
+3fa , * r 3fa
+3fa ) * r 3fa
+3fa $ * l 5
+
+3fb , *  r 3fc
+3fb ) * l 3fc
+
+3fc 1 * l 4a
+3fc 0 * l 4b
+3fc 2 * l 4c
+3fc 3 * l 4d
+3fc 4 * l 4e
+3fc f * l 3fc
+3fc 6 * l 4g
+3fc 7 * l 4h
+3fc 8 * l 4i
+3fc 9 * l 4j
+3fc , * l 3fc
+
+3g 0 * r 3g
+3g 1 * r 3g
+3g 2 * r 3g
+3g 3 * r 3g
+3g 4 * r 3g
+3g 5 * r 3g
+3g 6 * r 3g
+3g 7 * r 3g
+3g 8 * r 3g
+3g 9 * r 3g
+3g , * r 3g
+3g @ * r 3g
+3g # * r 3ga
+3g a * r 3g
+3g b * r 3g
+3g c * r 3g
+3g d * r 3g
+3g e * r 3g
+3g f * r 3g
+3g g * r 3g
+3g h * r 3g
+3g i * r 3g
+3g j * r 3g
+3g A * r 3g
+3g B * r 3g
+3g C * r 3g
+3g D * r 3g
+3g E * r 3g
+3g F * r 3g
+3g G * r 3g
+3g H * r 3g
+3g I * r 3g
+3g J * r 3g
+
+
+
+
+3ga ( * r 3ga
+3ga 0 * r 3ga
+3ga 1 * r 3ga
+3ga 2 * r 3ga
+3ga 3 * r 3ga
+3ga 4 * r 3ga
+3ga 5 * r 3ga
+3ga 6 g r 3gb
+3ga 7 * r 3ga
+3ga 8 * r 3ga
+3ga 9 * r 3ga
+3ga , * r 3ga
+3ga ) * r 3ga
+3ga $ * l 5
+
+3gb , *  r 3gc
+3gb ) * l 3gc
+
+3gc 1 * l 4a
+3gc 0 * l 4b
+3gc 2 * l 4c
+3gc 3 * l 4d
+3gc 4 * l 4e
+3gc 5 * l 4f
+3gc g * l 3gc
+3gc 7 * l 4h
+3gc 8 * l 4i
+3gc 9 * l 4j
+3gc , * l 3gc
+
+3h 0 * r 3h
+3h 1 * r 3h
+3h 2 * r 3h
+3h 3 * r 3h
+3h 4 * r 3h
+3h 5 * r 3h
+3h 6 * r 3h
+3h 7 * r 3h
+3h 8 * r 3h
+3h 9 * r 3h
+3h , * r 3h
+3h @ * r 3h
+3h # * r 3ha
+3h a * r 3h
+3h b * r 3h
+3h c * r 3h
+3h d * r 3h
+3h e * r 3h
+3h f * r 3h
+3h g * r 3h
+3h h * r 3h
+3h i * r 3h
+3h j * r 3h
+3h A * r 3h
+3h B * r 3h
+3h C * r 3h
+3h D * r 3h
+3h E * r 3h
+3h F * r 3h
+3h G * r 3h
+3h H * r 3h
+3h I * r 3h
+3h J * r 3h
+
+
+
+
+3ha ( * r 3ha
+3ha 0 * r 3ha
+3ha 1 * r 3ha
+3ha 2 * r 3ha
+3ha 3 * r 3ha
+3ha 4 * r 3ha
+3ha 5 * r 3ha
+3ha 6 * r 3ha
+3ha 7 h r 3hb
+3ha 8 * r 3ha
+3ha 9 * r 3ha
+3ha , * r 3ha
+3ha ) * r 3ha
+3ha $ * l 5
+
+3hb , *  r 3hc
+3hb ) * l 3hc
+
+3hc 1 * l 4a
+3hc 0 * l 4b
+3hc 2 * l 4c
+3hc 3 * l 4d
+3hc 4 * l 4e
+3hc 5 * l 4f
+3hc 6 * l 4g
+3hc h * l 3hc
+3hc 8 * l 4i
+3hc 9 * l 4j
+3hc , * l 3hc
+
+3i 0 * r 3i
+3i 1 * r 3i
+3i 2 * r 3i
+3i 3 * r 3i
+3i 4 * r 3i
+3i 5 * r 3i
+3i 6 * r 3i
+3i 7 * r 3i
+3i 8 * r 3i
+3i 9 * r 3i
+3i , * r 3i
+3i @ * r 3i
+3i # * r 3ia
+3i a * r 3i
+3i b * r 3i
+3i c * r 3i
+3i d * r 3i
+3i e * r 3i
+3i f * r 3i
+3i g * r 3i
+3i h * r 3i
+3i i * r 3i
+3i j * r 3i
+3i A * r 3i
+3i B * r 3i
+3i C * r 3i
+3i D * r 3i
+3i E * r 3i
+3i F * r 3i
+3i G * r 3i
+3i H * r 3i
+3i I * r 3i
+3i J * r 3i
+
+
+
+
+3ia ( * r 3ia
+3ia 0 * r 3ia
+3ia 1 * r 3ia
+3ia 2 * r 3ia
+3ia 3 * r 3ia
+3ia 4 * r 3ia
+3ia 5 * r 3ia
+3ia 6 * r 3ia
+3ia 7 * r 3ia
+3ia 8 i r 3ib
+3ia 9 * r 3ia
+3ia , * r 3ia
+3ia ) * r 3ia
+3ia $ * l 5
+
+3ib , *  r 3ic
+3ib ) * l 3ic
+
+3ic 1 * l 4a
+3ic 0 * l 4b
+3ic 2 * l 4c
+3ic 3 * l 4d
+3ic 4 * l 4e
+3ic 5 * l 4f
+3ic 6 * l 4g
+3ic 7 * l 4h
+3ic i * l 3ic
+3ic 9 * l 4j
+3ic , * l 3ic
+
+
+3j 0 * r 3j
+3j 1 * r 3j
+3j 2 * r 3j
+3j 3 * r 3j
+3j 4 * r 3j
+3j 5 * r 3j
+3j 6 * r 3j
+3j 7 * r 3j
+3j 8 * r 3j
+3j 9 * r 3j
+3j , * r 3j
+3j @ * r 3j
+3j # * r 3ja
+3j a * r 3j
+3j b * r 3j
+3j c * r 3j
+3j d * r 3j
+3j e * r 3j
+3j f * r 3j
+3j g * r 3j
+3j h * r 3j
+3j i * r 3j
+3j j * r 3j
+3j A * r 3j
+3j B * r 3j
+3j C * r 3j
+3j D * r 3j
+3j E * r 3j
+3j F * r 3j
+3j G * r 3j
+3j H * r 3j
+3j I * r 3j
+3j J * r 3j
+
+
+
+
+3ja ( * r 3ja
+3ja 0 * r 3ja
+3ja 1 * r 3ja
+3ja 2 * r 3ja
+3ja 3 * r 3ja
+3ja 4 * r 3ja
+3ja 5 * r 3ja
+3ja 6 * r 3ja
+3ja 7 * r 3ja
+3ja 8 * r 3ja
+3ja 9 j r 3jb
+3ja , * r 3ja
+3ja ) * r 3ja
+3ja $ * l 5
+
+3jb , *  r 3jc
+3jb ) * l 3jc
+
+3jc 1 * l 4a
+3jc 0 * l 4b
+3jc 2 * l 4c
+3jc 3 * l 4d
+3jc 4 * l 4e
+3jc 5 * l 4f
+3jc 6 * l 4g
+3jc 7 * l 4h
+3jc 8 * l 4i
+3jc j * l 3jc
+3jc , * l 3jc
+
+
+
+
+
+
+;State 4a go back to find 0 and go to entry again to continue search
+4a 1 * l 4a
+4a 2 * l 4a
+4a 3 * l 4a
+4a 4 * l 4a
+4a 5 * l 4a
+4a 6 * l 4a
+4a 7 * l 4a
+4a 8 * l 4a
+4a 9 * l 4a
+4a 0 * l 4a
+4a # * l 4a
+4a @ * l 4aa
+4a ( * l 4a
+4a ) * l 4a
+4a , * l 4a
+4a a * l 4a
+4a b * l 4a
+4a c * l 4a
+4a d * l 4a
+4a e * l 4a
+4a f * l 4a
+4a g * l 4a
+4a h * l 4a
+4a i * l 4a
+4a j * l 4a
+
+4aa 1 * l 4aa
+4aa 2 * l 4aa
+4aa 3 * l 4aa
+4aa 4 * l 4aa
+4aa 5 * l 4aa
+4aa 6 * l 4aa
+4aa 7 * l 4aa
+4aa 8 * l 4aa
+4aa 9 * l 4aa
+4aa 0 a r 4ab
+4aa , * l 4aa
+4aa A * r 4ab
+4aa B * l 4aa
+4aa C * l 4aa
+4aa D * l 4aa
+4aa E * l 4aa
+4aa F * l 4aa
+4aa G * l 4aa
+4aa H * l 4aa
+4aa I * l 4aa
+4aa J * l 4aa
+4aa a * r 4ab
+4aa b * l 4aa
+4aa c * l 4aa
+4aa d * l 4aa
+4aa e * l 4aa
+4aa f * l 4aa
+4aa g * l 4aa
+4aa h * l 4aa
+4aa i * l 4aa
+4aa j * l 4aa
+
+
+4ab 0 * r 4ab
+4ab 1 * r 4ab
+4ab 2 * r 4ab
+4ab 3 * r 4ab
+4ab 4 * r 4ab
+4ab 5 * r 4ab
+4ab 6 * r 4ab
+4ab 7 * r 4ab
+4ab 8 * r 4ab
+4ab 9 * r 4ab
+4ab @ * r 4ab
+4ab , * r 4ab
+4ab # * r 4ac
+4ab a * r 4ab
+4ab b * r 4ab
+4ab c * r 4ab
+4ab d * r 4ab
+4ab e * r 4ab
+4ab f * r 4ab
+4ab g * r 4ab
+4ab h * r 4ab
+4ab i * r 4ab
+4ab j * r 4ab
+4ab A * r 4ab
+4ab B * r 4ab
+4ab C * r 4ab
+4ab D * r 4ab
+4ab E * r 4ab
+4ab F * r 4ab
+4ab G * r 4ab
+4ab H * r 4ab
+4ab I * r 4ab
+4ab J * r 4ab
+
+
+
+4ac 0 * r 4ac
+4ac 1 * r 4ac
+4ac 2 * r 4ac
+4ac 3 * r 4ac
+4ac 4 * r 4ac
+4ac 5 * r 4ac
+4ac 6 * r 4ac
+4ac 7 * r 4ac
+4ac 8 * r 4ac
+4ac 9 * r 4ac
+4ac ( * r 4ac
+4ac ) * r 4ac
+4ac , * r 4ac
+4ac a 0 r 3aa
+4ac b 1 r 3ba
+4ac c 2 r 3ca
+4ac d 3 r 3da
+4ac e 4 r 3ea
+4ac f 5 r 3fa
+4ac g 6 r 3ga
+4ac h 7 r 3ha
+4ac i 8 r 3ia
+4ac j 9 r 3ja
+
+
+
+
+
+
+
+4b 1 * l 4b
+4b 2 * l 4b
+4b 3 * l 4b
+4b 4 * l 4b
+4b 5 * l 4b
+4b 6 * l 4b
+4b 7 * l 4b
+4b 8 * l 4b
+4b 9 * l 4b
+4b 0 * l 4b
+4b # * l 4b
+4b @ * l 4ba
+4b ( * l 4b
+4b ) * l 4b
+4b , * l 4b
+4b a * l 4b
+4b b * l 4b
+4b c * l 4b
+4b d * l 4b
+4b e * l 4b
+4b f * l 4b
+4b g * l 4b
+4b h * l 4b
+4b i * l 4b
+4b j * l 4b
+
+4ba 1 b r 4bb
+4ba 2 * l 4ba
+4ba 3 * l 4ba
+4ba 4 * l 4ba
+4ba 5 * l 4ba
+4ba 6 * l 4ba
+4ba 7 * l 4ba
+4ba 8 * l 4ba
+4ba 9 * l 4ba
+4ba 0 * l 4ba
+4ba , * l 4ba
+4ba A * l 4ba
+4ba B * r 4bb
+4ba C * l 4ba
+4ba D * l 4ba
+4ba E * l 4ba
+4ba F * l 4ba
+4ba G * l 4ba
+4ba H * l 4ba
+4ba I * l 4ba
+4ba J * l 4ba
+4ba a * l 4ba
+4ba b * r 4bb
+4ba c * l 4ba
+4ba d * l 4ba
+4ba e * l 4ba
+4ba f * l 4ba
+4ba g * l 4ba
+4ba h * l 4ba
+4ba i * l 4ba
+4ba j * l 4ba
+
+
+4bb 0 * r 4bb
+4bb 1 * r 4bb
+4bb 2 * r 4bb
+4bb 3 * r 4bb
+4bb 4 * r 4bb
+4bb 5 * r 4bb
+4bb 6 * r 4bb
+4bb 7 * r 4bb
+4bb 8 * r 4bb
+4bb 9 * r 4bb
+4bb @ * r 4bb
+4bb , * r 4bb
+4bb # * r 4bc
+4bb a * r 4bb
+4bb b * r 4bb
+4bb c * r 4bb
+4bb d * r 4bb
+4bb e * r 4bb
+4bb f * r 4bb
+4bb g * r 4bb
+4bb h * r 4bb
+4bb i * r 4bb
+4bb j * r 4bb
+4bb A * r 4bb
+4bb B * r 4bb
+4bb C * r 4bb
+4bb D * r 4bb
+4bb E * r 4bb
+4bb F * r 4bb
+4bb G * r 4bb
+4bb H * r 4bb
+4bb I * r 4bb
+4bb J * r 4bb
+
+
+
+4bc 0 * r 4bc
+4bc 1 * r 4bc
+4bc 2 * r 4bc
+4bc 3 * r 4bc
+4bc 4 * r 4bc
+4bc 5 * r 4bc
+4bc 6 * r 4bc
+4bc 7 * r 4bc
+4bc 8 * r 4bc
+4bc 9 * r 4bc
+4bc ( * r 4bc
+4bc ) * r 4bc
+4bc , * r 4bc
+4bc a 0 r 3aa
+4bc b 1 r 3ba
+4bc c 2 r 3ca
+4bc d 3 r 3da
+4bc e 4 r 3ea
+4bc f 5 r 3fa
+4bc g 6 r 3ga
+4bc h 7 r 3ha
+4bc i 8 r 3ia
+4bc j 9 r 3ja
+
+4c 1 * l 4c
+4c 2 * l 4c
+4c 3 * l 4c
+4c 4 * l 4c
+4c 5 * l 4c
+4c 6 * l 4c
+4c 7 * l 4c
+4c 8 * l 4c
+4c 9 * l 4c
+4c 0 * l 4c
+4c # * l 4c
+4c @ * l 4ca
+4c ( * l 4c
+4c ) * l 4c
+4c , * l 4c
+4c a * l 4c
+4c b * l 4c
+4c c * l 4c
+4c d * l 4c
+4c e * l 4c
+4c f * l 4c
+4c g * l 4c
+4c h * l 4c
+4c i * l 4c
+4c j * l 4c
+
+4ca 1 * l 4ca
+4ca 2 c r 4cb
+4ca 3 * l 4ca
+4ca 4 * l 4ca
+4ca 5 * l 4ca
+4ca 6 * l 4ca
+4ca 7 * l 4ca
+4ca 8 * l 4ca
+4ca 9 * l 4ca
+4ca 0 * l 4ca
+4ca , * l 4ca
+4ca A * l 4ca
+4ca B * l 4ca
+4ca C * r 4cb
+4ca D * l 4ca
+4ca E * l 4ca
+4ca F * l 4ca
+4ca G * l 4ca
+4ca H * l 4ca
+4ca I * l 4ca
+4ca J * l 4ca
+4ca a * l 4ca
+4ca b * l 4ca
+4ca c * r 4cb
+4ca d * l 4ca
+4ca e * l 4ca
+4ca f * l 4ca
+4ca g * l 4ca
+4ca h * l 4ca
+4ca i * l 4ca
+4ca j * l 4ca
+
+
+4cb 0 * r 4cb
+4cb 1 * r 4cb
+4cb 2 * r 4cb
+4cb 3 * r 4cb
+4cb 4 * r 4cb
+4cb 5 * r 4cb
+4cb 6 * r 4cb
+4cb 7 * r 4cb
+4cb 8 * r 4cb
+4cb 9 * r 4cb
+4cb @ * r 4cb
+4cb , * r 4cb
+4cb # * r 4cc
+4cb a * r 4cb
+4cb b * r 4cb
+4cb c * r 4cb
+4cb d * r 4cb
+4cb e * r 4cb
+4cb f * r 4cb
+4cb g * r 4cb
+4cb h * r 4cb
+4cb i * r 4cb
+4cb j * r 4cb
+4cb A * r 4cb
+4cb B * r 4cb
+4cb C * r 4cb
+4cb D * r 4cb
+4cb E * r 4cb
+4cb F * r 4cb
+4cb G * r 4cb
+4cb H * r 4cb
+4cb I * r 4cb
+4cb J * r 4cb
+
+
+
+4cc 0 * r 4cc
+4cc 1 * r 4cc
+4cc 2 * r 4cc
+4cc 3 * r 4cc
+4cc 4 * r 4cc
+4cc 5 * r 4cc
+4cc 6 * r 4cc
+4cc 7 * r 4cc
+4cc 8 * r 4cc
+4cc 9 * r 4cc
+4cc ( * r 4cc
+4cc ) * r 4cc
+4cc , * r 4cc
+4cc a 0 r 3aa
+4cc b 1 r 3ba
+4cc c 2 r 3ca
+4cc d 3 r 3da
+4cc e 4 r 3ea
+4cc f 5 r 3fa
+4cc g 6 r 3ga
+4cc h 7 r 3ha
+4cc i 8 r 3ia
+4cc j 9 r 3ja
+
+
+4d 1 * l 4d
+4d 2 * l 4d
+4d 3 * l 4d
+4d 4 * l 4d
+4d 5 * l 4d
+4d 6 * l 4d
+4d 7 * l 4d
+4d 8 * l 4d
+4d 9 * l 4d
+4d 0 * l 4d
+4d # * l 4d
+4d @ * l 4da
+4d ( * l 4d
+4d ) * l 4d
+4d , * l 4d
+4d a * l 4d
+4d b * l 4d
+4d c * l 4d
+4d d * l 4d
+4d e * l 4d
+4d f * l 4d
+4d g * l 4d
+4d h * l 4d
+4d i * l 4d
+4d j * l 4d
+
+4da 1 * l 4da
+4da 2 * l 4da
+4da 3 d r 4db
+4da 4 * l 4da
+4da 5 * l 4da
+4da 6 * l 4da
+4da 7 * l 4da
+4da 8 * l 4da
+4da 9 * l 4da
+4da 0 * l 4da
+4da , * l 4da
+4da A * l 4da
+4da B * l 4da
+4da C * l 4da
+4da D * r 4db
+4da E * l 4da
+4da F * l 4da
+4da G * l 4da
+4da H * l 4da
+4da I * l 4da
+4da J * l 4da
+4da a * l 4da
+4da b * l 4da
+4da c * l 4da
+4da d * r 4db
+4da e * l 4da
+4da f * l 4da
+4da g * l 4da
+4da h * l 4da
+4da i * l 4da
+4da j * l 4da
+
+
+4db 0 * r 4db
+4db 1 * r 4db
+4db 2 * r 4db
+4db 3 * r 4db
+4db 4 * r 4db
+4db 5 * r 4db
+4db 6 * r 4db
+4db 7 * r 4db
+4db 8 * r 4db
+4db 9 * r 4db
+4db @ * r 4db
+4db , * r 4db
+4db # * r 4dc
+4db a * r 4db
+4db b * r 4db
+4db c * r 4db
+4db d * r 4db
+4db e * r 4db
+4db f * r 4db
+4db g * r 4db
+4db h * r 4db
+4db i * r 4db
+4db j * r 4db
+4db A * r 4db
+4db B * r 4db
+4db C * r 4db
+4db D * r 4db
+4db E * r 4db
+4db F * r 4db
+4db G * r 4db
+4db H * r 4db
+4db I * r 4db
+4db J * r 4db
+
+
+
+4dc 0 * r 4dc
+4dc 1 * r 4dc
+4dc 2 * r 4dc
+4dc 3 * r 4dc
+4dc 4 * r 4dc
+4dc 5 * r 4dc
+4dc 6 * r 4dc
+4dc 7 * r 4dc
+4dc 8 * r 4dc
+4dc 9 * r 4dc
+4dc ( * r 4dc
+4dc ) * r 4dc
+4dc , * r 4dc
+4dc a 0 r 3aa
+4dc b 1 r 3ba
+4dc c 2 r 3ca
+4dc d 3 r 3da
+4dc e 4 r 3ea
+4dc f 5 r 3fa
+4dc g 6 r 3ga
+4dc h 7 r 3ha
+4dc i 8 r 3ia
+4dc j 9 r 3ja
+
+4e 1 * l 4e
+4e 2 * l 4e
+4e 3 * l 4e
+4e 4 * l 4e
+4e 5 * l 4e
+4e 6 * l 4e
+4e 7 * l 4e
+4e 8 * l 4e
+4e 9 * l 4e
+4e 0 * l 4e
+4e # * l 4e
+4e @ * l 4ea
+4e ( * l 4e
+4e ) * l 4e
+4e , * l 4e
+4e a * l 4e
+4e b * l 4e
+4e c * l 4e
+4e d * l 4e
+4e e * l 4e
+4e f * l 4e
+4e g * l 4e
+4e h * l 4e
+4e i * l 4e
+4e j * l 4e
+
+
+4ea 1 * l 4ea
+4ea 2 * l 4ea
+4ea 3 * l 4ea
+4ea 4 e r 4eb
+4ea 5 * l 4ea
+4ea 6 * l 4ea
+4ea 7 * l 4ea
+4ea 8 * l 4ea
+4ea 9 * l 4ea
+4ea 0 * l 4ea
+4ea , * l 4ea
+4ea A * l 4ea
+4ea B * l 4ea
+4ea C * l 4ea
+4ea D * l 4ea
+4ea E * r 4eb
+4ea F * l 4ea
+4ea G * l 4ea
+4ea H * l 4ea
+4ea I * l 4ea
+4ea J * l 4ea
+4ea a * l 4ea
+4ea b * l 4ea
+4ea c * l 4ea
+4ea d * l 4ea
+4ea e * r 4eb
+4ea f * l 4ea
+4ea g * l 4ea
+4ea h * l 4ea
+4ea i * l 4ea
+4ea j * l 4ea
+
+
+4eb 0 * r 4eb
+4eb 1 * r 4eb
+4eb 2 * r 4eb
+4eb 3 * r 4eb
+4eb 4 * r 4eb
+4eb 5 * r 4eb
+4eb 6 * r 4eb
+4eb 7 * r 4eb
+4eb 8 * r 4eb
+4eb 9 * r 4eb
+4eb @ * r 4eb
+4eb , * r 4eb
+4eb # * r 4ec
+4eb a * r 4eb
+4eb b * r 4eb
+4eb c * r 4eb
+4eb d * r 4eb
+4eb e * r 4eb
+4eb f * r 4eb
+4eb g * r 4eb
+4eb h * r 4eb
+4eb i * r 4eb
+4eb j * r 4eb
+4eb A * r 4eb
+4eb B * r 4eb
+4eb C * r 4eb
+4eb D * r 4eb
+4eb E * r 4eb
+4eb F * r 4eb
+4eb G * r 4eb
+4eb H * r 4eb
+4eb I * r 4eb
+4eb J * r 4eb
+
+
+4ec 0 * r 4ec
+4ec 1 * r 4ec
+4ec 2 * r 4ec
+4ec 3 * r 4ec
+4ec 4 * r 4ec
+4ec 5 * r 4ec
+4ec 6 * r 4ec
+4ec 7 * r 4ec
+4ec 8 * r 4ec
+4ec 9 * r 4ec
+4ec ( * r 4ec
+4ec ) * r 4ec
+4ec , * r 4ec
+4ec a 0 r 3aa
+4ec b 1 r 3ba
+4ec c 2 r 3ca
+4ec d 3 r 3da
+4ec e 4 r 3ea
+4ec f 5 r 3fa
+4ec g 6 r 3ga
+4ec h 7 r 3ha
+4ec i 8 r 3ia
+4ec j 9 r 3ja
+
+4f 1 * l 4f
+4f 2 * l 4f
+4f 3 * l 4f
+4f 4 * l 4f
+4f 5 * l 4f
+4f 6 * l 4f
+4f 7 * l 4f
+4f 8 * l 4f
+4f 9 * l 4f
+4f 0 * l 4f
+4f # * l 4f
+4f @ * l 4fa
+4f ( * l 4f
+4f ) * l 4f
+4f , * l 4f
+4f a * l 4f
+4f b * l 4f
+4f c * l 4f
+4f d * l 4f
+4f e * l 4f
+4f f * l 4f
+4f g * l 4f
+4f h * l 4f
+4f i * l 4f
+4f j * l 4f
+
+
+4fa 1 * l 4fa
+4fa 2 * l 4fa
+4fa 3 * l 4fa
+4fa 4 * l 4fa
+4fa 5 f r 4fb
+4fa 6 * l 4fa
+4fa 7 * l 4fa
+4fa 8 * l 4fa
+4fa 9 * l 4fa
+4fa 0 * l 4fa
+4fa , * l 4fa
+4fa A * l 4fa
+4fa B * l 4fa
+4fa C * l 4fa
+4fa D * l 4fa
+4fa E * l 4fa
+4fa F * r 4fb
+4fa G * l 4fa
+4fa H * l 4fa
+4fa I * l 4fa
+4fa J * l 4fa
+4fa a * l 4fa
+4fa b * l 4fa
+4fa c * l 4fa
+4fa d * l 4fa
+4fa e * l 4fa
+4fa f * r 4fb
+4fa g * l 4fa
+4fa h * l 4fa
+4fa i * l 4fa
+4fa j * l 4fa
+
+
+4fb 0 * r 4fb
+4fb 1 * r 4fb
+4fb 2 * r 4fb
+4fb 3 * r 4fb
+4fb 4 * r 4fb
+4fb 5 * r 4fb
+4fb 6 * r 4fb
+4fb 7 * r 4fb
+4fb 8 * r 4fb
+4fb 9 * r 4fb
+4fb @ * r 4fb
+4fb , * r 4fb
+4fb # * r 4fc
+4fb a * r 4fb
+4fb b * r 4fb
+4fb c * r 4fb
+4fb d * r 4fb
+4fb e * r 4fb
+4fb f * r 4fb
+4fb g * r 4fb
+4fb h * r 4fb
+4fb i * r 4fb
+4fb j * r 4fb
+4fb A * r 4fb
+4fb B * r 4fb
+4fb C * r 4fb
+4fb D * r 4fb
+4fb E * r 4fb
+4fb F * r 4fb
+4fb G * r 4fb
+4fb H * r 4fb
+4fb I * r 4fb
+4fb J * r 4fb
+
+
+4fc 0 * r 4fc
+4fc 1 * r 4fc
+4fc 2 * r 4fc
+4fc 3 * r 4fc
+4fc 4 * r 4fc
+4fc 5 * r 4fc
+4fc 6 * r 4fc
+4fc 7 * r 4fc
+4fc 8 * r 4fc
+4fc 9 * r 4fc
+4fc ( * r 4fc
+4fc ) * r 4fc
+4fc , * r 4fc
+4fc a 0 r 3aa
+4fc b 1 r 3ba
+4fc c 2 r 3ca
+4fc d 3 r 3da
+4fc e 4 r 3ea
+4fc f 5 r 3fa
+4fc g 6 r 3ga
+4fc h 7 r 3ha
+4fc i 8 r 3ia
+4fc j 9 r 3ja
+
+4g 1 * l 4g
+4g 2 * l 4g
+4g 3 * l 4g
+4g 4 * l 4g
+4g 5 * l 4g
+4g 6 * l 4g
+4g 7 * l 4g
+4g 8 * l 4g
+4g 9 * l 4g
+4g 0 * l 4g
+4g # * l 4g
+4g @ * l 4ga
+4g ( * l 4g
+4g ) * l 4g
+4g , * l 4g
+4g a * l 4g
+4g b * l 4g
+4g c * l 4g
+4g d * l 4g
+4g e * l 4g
+4g f * l 4g
+4g g * l 4g
+4g h * l 4g
+4g i * l 4g
+4g j * l 4g
+
+
+4ga 1 * l 4ga
+4ga 2 * l 4ga
+4ga 3 * l 4ga
+4ga 4 * l 4ga
+4ga 5 * l 4ga
+4ga 6 g r 4gb
+4ga 7 * l 4ga
+4ga 8 * l 4ga
+4ga 9 * l 4ga
+4ga 0 * l 4ga
+4ga , * l 4ga
+4ga A * l 4ga
+4ga B * l 4ga
+4ga C * l 4ga
+4ga D * l 4ga
+4ga E * l 4ga
+4ga F * l 4ga
+4ga G * r 4gb
+4ga H * l 4ga
+4ga I * l 4ga
+4ga J * l 4ga
+4ga a * l 4ga
+4ga b * l 4ga
+4ga c * l 4ga
+4ga d * l 4ga
+4ga e * l 4ga
+4ga f * l 4ga
+4ga g * r 4gb
+4ga h * l 4ga
+4ga i * l 4ga
+4ga j * l 4ga
+
+
+4gb 0 * r 4gb
+4gb 1 * r 4gb
+4gb 2 * r 4gb
+4gb 3 * r 4gb
+4gb 4 * r 4gb
+4gb 5 * r 4gb
+4gb 6 * r 4gb
+4gb 7 * r 4gb
+4gb 8 * r 4gb
+4gb 9 * r 4gb
+4gb @ * r 4gb
+4gb , * r 4gb
+4gb # * r 4gc
+4gb a * r 4gb
+4gb b * r 4gb
+4gb c * r 4gb
+4gb d * r 4gb
+4gb e * r 4gb
+4gb f * r 4gb
+4gb g * r 4gb
+4gb h * r 4gb
+4gb i * r 4gb
+4gb j * r 4gb
+4gb A * r 4gb
+4gb B * r 4gb
+4gb C * r 4gb
+4gb D * r 4gb
+4gb E * r 4gb
+4gb F * r 4gb
+4gb G * r 4gb
+4gb H * r 4gb
+4gb I * r 4gb
+4gb J * r 4gb
+
+
+4gc 0 * r 4gc
+4gc 1 * r 4gc
+4gc 2 * r 4gc
+4gc 3 * r 4gc
+4gc 4 * r 4gc
+4gc 5 * r 4gc
+4gc 6 * r 4gc
+4gc 7 * r 4gc
+4gc 8 * r 4gc
+4gc 9 * r 4gc
+4gc ( * r 4gc
+4gc ) * r 4gc
+4gc , * r 4gc
+4gc a 0 r 3aa
+4gc b 1 r 3ba
+4gc c 2 r 3ca
+4gc d 3 r 3da
+4gc e 4 r 3ea
+4gc f 5 r 3fa
+4gc g 6 r 3ga
+4gc h 7 r 3ha
+4gc i 8 r 3ia
+4gc j 9 r 3ja
+
+
+4h 1 * l 4h
+4h 2 * l 4h
+4h 3 * l 4h
+4h 4 * l 4h
+4h 5 * l 4h
+4h 6 * l 4h
+4h 7 * l 4h
+4h 8 * l 4h
+4h 9 * l 4h
+4h 0 * l 4h
+4h # * l 4h
+4h @ * l 4ha
+4h ( * l 4h
+4h ) * l 4h
+4h , * l 4h
+4h a * l 4h
+4h b * l 4h
+4h c * l 4h
+4h d * l 4h
+4h e * l 4h
+4h f * l 4h
+4h g * l 4h
+4h h * l 4h
+4h i * l 4h
+4h j * l 4h
+
+
+4ha 1 * l 4ha
+4ha 2 * l 4ha
+4ha 3 * l 4ha
+4ha 4 * l 4ha
+4ha 5 * l 4ha
+4ha 6 * l 4ha
+4ha 7 h r 4hb
+4ha 8 * l 4ha
+4ha 9 * l 4ha
+4ha 0 * l 4ha
+4ha , * l 4ha
+4ha A * l 4ha
+4ha B * l 4ha
+4ha C * l 4ha
+4ha D * l 4ha
+4ha E * l 4ha
+4ha F * l 4ha
+4ha G * l 4ha
+4ha H * r 4hb
+4ha I * l 4ha
+4ha J * l 4ha
+4ha a * l 4ha
+4ha b * l 4ha
+4ha c * l 4ha
+4ha d * l 4ha
+4ha e * l 4ha
+4ha f * l 4ha
+4ha g * l 4ha
+4ha h * r 4hb
+4ha i * l 4ha
+4ha j * l 4ha
+
+
+
+4hb 0 * r 4hb
+4hb 1 * r 4hb
+4hb 2 * r 4hb
+4hb 3 * r 4hb
+4hb 4 * r 4hb
+4hb 5 * r 4hb
+4hb 6 * r 4hb
+4hb 7 * r 4hb
+4hb 8 * r 4hb
+4hb 9 * r 4hb
+4hb @ * r 4hb
+4hb , * r 4hb
+4hb # * r 4hc
+4hb a * r 4hb
+4hb b * r 4hb
+4hb c * r 4hb
+4hb d * r 4hb
+4hb e * r 4hb
+4hb f * r 4hb
+4hb g * r 4hb
+4hb h * r 4hb
+4hb i * r 4hb
+4hb j * r 4hb
+4hb A * r 4hb
+4hb B * r 4hb
+4hb C * r 4hb
+4hb D * r 4hb
+4hb E * r 4hb
+4hb F * r 4hb
+4hb G * r 4hb
+4hb H * r 4hb
+4hb I * r 4hb
+4hb J * r 4hb
+
+
+4hc 0 * r 4hc
+4hc 1 * r 4hc
+4hc 2 * r 4hc
+4hc 3 * r 4hc
+4hc 4 * r 4hc
+4hc 5 * r 4hc
+4hc 6 * r 4hc
+4hc 7 * r 4hc
+4hc 8 * r 4hc
+4hc 9 * r 4hc
+4hc ( * r 4hc
+4hc ) * r 4hc
+4hc , * r 4hc
+4hc a 0 r 3aa
+4hc b 1 r 3ba
+4hc c 2 r 3ca
+4hc d 3 r 3da
+4hc e 4 r 3ea
+4hc f 5 r 3fa
+4hc g 6 r 3ga
+4hc h 7 r 3ha
+4hc i 8 r 3ia
+4hc j 9 r 3ja
+
+4i 1 * l 4i
+4i 2 * l 4i
+4i 3 * l 4i
+4i 4 * l 4i
+4i 5 * l 4i
+4i 6 * l 4i
+4i 7 * l 4i
+4i 8 * l 4i
+4i 9 * l 4i
+4i 0 * l 4i
+4i # * l 4i
+4i @ * l 4ia
+4i ( * l 4i
+4i ) * l 4i
+4i , * l 4i
+4i a * l 4i
+4i b * l 4i
+4i c * l 4i
+4i d * l 4i
+4i e * l 4i
+4i f * l 4i
+4i g * l 4i
+4i h * l 4i
+4i i * l 4i
+4i j * l 4i
+
+
+4ia 1 * l 4ia
+4ia 2 * l 4ia
+4ia 3 * l 4ia
+4ia 4 * l 4ia
+4ia 5 * l 4ia
+4ia 6 * l 4ia
+4ia 7 * l 4ia
+4ia 8 i r 4ib
+4ia 9 * l 4ia
+4ia 0 * l 4ia
+4ia , * l 4ia
+4ia A * l 4ia
+4ia B * l 4ia
+4ia C * l 4ia
+4ia D * l 4ia
+4ia E * l 4ia
+4ia F * l 4ia
+4ia G * l 4ia
+4ia H * l 4ia
+4ia I * r 4ib
+4ia J * l 4ia
+4ia a * l 4ia
+4ia b * l 4ia
+4ia c * l 4ia
+4ia d * l 4ia
+4ia e * l 4ia
+4ia f * l 4ia
+4ia g * l 4ia
+4ia h * r 4ia
+4ia i * r 4ib
+4ia j * l 4ia
+
+
+
+4ib 0 * r 4ib
+4ib 1 * r 4ib
+4ib 2 * r 4ib
+4ib 3 * r 4ib
+4ib 4 * r 4ib
+4ib 5 * r 4ib
+4ib 6 * r 4ib
+4ib 7 * r 4ib
+4ib 8 * r 4ib
+4ib 9 * r 4ib
+4ib @ * r 4ib
+4ib , * r 4ib
+4ib # * r 4ic
+4ib a * r 4ib
+4ib b * r 4ib
+4ib c * r 4ib
+4ib d * r 4ib
+4ib e * r 4ib
+4ib f * r 4ib
+4ib g * r 4ib
+4ib h * r 4ib
+4ib i * r 4ib
+4ib j * r 4ib
+4ib A * r 4ib
+4ib B * r 4ib
+4ib C * r 4ib
+4ib D * r 4ib
+4ib E * r 4ib
+4ib F * r 4ib
+4ib G * r 4ib
+4ib H * r 4ib
+4ib I * r 4ib
+4ib J * r 4ib
+
+
+4ic 0 * r 4ic
+4ic 1 * r 4ic
+4ic 2 * r 4ic
+4ic 3 * r 4ic
+4ic 4 * r 4ic
+4ic 5 * r 4ic
+4ic 6 * r 4ic
+4ic 7 * r 4ic
+4ic 8 * r 4ic
+4ic 9 * r 4ic
+4ic ( * r 4ic
+4ic ) * r 4ic
+4ic , * r 4ic
+4ic a 0 r 3aa
+4ic b 1 r 3ba
+4ic c 2 r 3ca
+4ic d 3 r 3da
+4ic e 4 r 3ea
+4ic f 5 r 3fa
+4ic g 6 r 3ga
+4ic h 7 r 3ha
+4ic i 8 r 3ia
+4ic j 9 r 3ja
+
+4j 1 * l 4j
+4j 2 * l 4j
+4j 3 * l 4j
+4j 4 * l 4j
+4j 5 * l 4j
+4j 6 * l 4j
+4j 7 * l 4j
+4j 8 * l 4j
+4j 9 * l 4j
+4j 0 * l 4j
+4j # * l 4j
+4j @ * l 4ja
+4j ( * l 4j
+4j ) * l 4j
+4j , * l 4j
+4j a * l 4j
+4j b * l 4j
+4j c * l 4j
+4j d * l 4j
+4j e * l 4j
+4j f * l 4j
+4j g * l 4j
+4j h * l 4j
+4j i * l 4j
+4j j * l 4j
+
+
+4ja 3 * l 4ja
+4ja 4 * l 4ja
+4ja 5 * l 4ja
+4ja 6 * l 4ja
+4ja 7 * l 4ja
+4ja 8 * l 4ja
+4ja 9 j l 4jb
+4ja 0 * l 4ja
+4ja , * l 4ja
+4ja A * l 4ja
+4ja B * l 4ja
+4ja C * l 4ja
+4ja D * l 4ja
+4ja E * l 4ja
+4ja F * l 4ja
+4ja G * l 4ja
+4ja H * l 4ja
+4ja I * l 4ja
+4ja J * r 4jb
+4ja a * l 4ja
+4ja b * l 4ja
+4ja c * l 4ja
+4ja d * l 4ja
+4ja e * l 4ja
+4ja f * l 4ja
+4ja g * l 4ja
+4ja h * l 4ja
+4ja i * l 4ja
+4ja j * r 4jb
+
+
+
+4jb 0 * r 4jb
+4jb 1 * r 4jb
+4jb 2 * r 4jb
+4jb 3 * r 4jb
+4jb 4 * r 4jb
+4jb 5 * r 4jb
+4jb 6 * r 4jb
+4jb 7 * r 4jb
+4jb 8 * r 4jb
+4jb 9 * r 4jb
+4jb @ * r 4jb
+4jb , * r 4jb
+4jb # * r 4jc
+4jb a * r 4jb
+4jb b * r 4jb
+4jb c * r 4jb
+4jb d * r 4jb
+4jb e * r 4jb
+4jb f * r 4jb
+4jb g * r 4jb
+4jb h * r 4jb
+4jb i * r 4jb
+4jb j * r 4jb
+4jb A * r 4jb
+4jb B * r 4jb
+4jb C * r 4jb
+4jb D * r 4jb
+4jb E * r 4jb
+4jb F * r 4jb
+4jb G * r 4jb
+4jb H * r 4jb
+4jb I * r 4jb
+4jb J * r 4jb
+
+
+4jc 0 * r 4jc
+4jc 1 * r 4jc
+4jc 2 * r 4jc
+4jc 3 * r 4jc
+4jc 4 * r 4jc
+4jc 5 * r 4jc
+4jc 6 * r 4jc
+4jc 7 * r 4jc
+4jc 8 * r 4jc
+4jc 9 * r 4jc
+4jc ( * r 4jc
+4jc ) * r 4jc
+4jc , * r 4jc
+4jc a 0 r 3aa
+4jc b 1 r 3ba
+4jc c 2 r 3ca
+4jc d 3 r 3da
+4jc e 4 r 3ea
+4jc f 5 r 3fa
+4jc g 6 r 3ga
+4jc h 7 r 3ha
+4jc i 8 r 3ia
+4jc j 9 r 3ja
+
+
+;go back to leftmost 
+5 0 * l 5
+5 1 * l 5
+5 2 * l 5
+5 3 * l 5
+5 4 * l 5
+5 5 * l 5
+5 6 * l 5
+5 7 * l 5
+5 8 * l 5
+5 9 * l 5
+5 ( * l 5
+5 ) * l 5
+5 , * l 5
+5 @ * l 5
+5 a * l 5
+5 b * l 5
+5 c * l 5
+5 d * l 5
+5 e * l 5
+5 f * l 5
+5 g * l 5
+5 h * l 5
+5 i * l 5
+5 j * l 5
+5 A * l 5
+5 B * l 5
+5 C * l 5
+5 D * l 5
+5 E * l 5
+5 F * l 5
+5 G * l 5
+5 H * l 5
+5 I * l 5
+5 J * l 5
+5 # * l 5
+5 ! * r 6 ! 
+
+
+;State 6 go find connected but not checked node
+6 0 * r 6
+6 1 * r 6
+6 2 * r 6
+6 3 * r 6
+6 4 * r 6
+6 5 * r 6
+6 6 * r 6
+6 7 * r 6
+6 8 * r 6
+6 9 * r 6
+6 A * r 6
+6 B * r 6
+6 C * r 6
+6 D * r 6
+6 E * r 6
+6 F * r 6
+6 G * r 6
+6 H * r 6
+6 I * r 6
+6 J * r 6
+6 , * r 6
+6 a A r 3a
+6 b B r 3b
+6 c C r 3c
+6 d D r 3d
+6 e E r 3e
+6 f F r 3f
+6 g G r 3g
+6 h H r 3h
+6 i I r 3i
+6 j J r 3j
+6 @ * l 7
+
+; State 7 if no new node reject or accept
+7 0 * * reject !
+7 1 * l reject !
+7 2 * l reject !
+7 3 * l reject !
+7 4 * l reject !
+7 5 * l reject !
+7 6 * l reject !
+7 7 * l reject !
+7 8 * l reject !
+7 9 * l reject !
+7 , * l 7
+7 A * l 7
+7 B * l 7
+7 C * l 7
+7 D * l 7
+7 E * l 7
+7 F * l 7
+7 G * l 7
+7 H * l 7
+7 I * l 7
+7 J * l 7
+7 ! * * accept !
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+select snum,sname
+from supplier
+where not exists
+(select *
+from supplier
+where snum in (select snum
+from spj,proj
+where spj.jnum = proj.jnum
+and proj.city ='Rome')
+and snum not in (
+select snum
+from spj
+where spj. snum = supplier.snum))

@@ -1,0 +1,153 @@
+
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+
+public class FSMtoProg {
+
+
+	public static void main(String [] args) throws IOException{
+		FileInputStream file = new FileInputStream("/home/qzhan37/cs424/1.txt");
+
+		BufferedReader keyboard = new BufferedReader(new InputStreamReader(file));
+		BufferedReader keyboard1 = new BufferedReader(new InputStreamReader(System.in));
+
+		Set<State> States = new HashSet<State>();
+		Set<Character> Alphabet = new HashSet<Character>();
+		State state = null;
+		Set<State> Accepts = new HashSet<State>();
+		char ch;
+
+		System.out.println("The DFA hs been added");
+		System.out.println("Please enter the language you want to test");
+
+
+		String states = keyboard.readLine();
+		StringTokenizer st1 = new StringTokenizer(states," ");
+		while(st1.hasMoreTokens()){
+			String i = st1.nextToken();
+			
+			States.add(new State(i));
+		}
+
+		
+
+		String Alpha = keyboard.readLine();
+		StringTokenizer st2 = new StringTokenizer(Alpha," ");
+		while(st2.hasMoreTokens()){
+			String i = st2.nextToken();
+			
+			Alphabet.add(i.charAt(0));
+		}
+
+		String initial = keyboard.readLine();
+		StringTokenizer st3 = new StringTokenizer(initial," ");
+		while(st3.hasMoreTokens()){
+			String i = st3.nextToken();
+			
+			for(State j:States){
+				if(j.s_name.equals(i))
+					state = j;
+			}
+		}
+		
+		
+
+		String finalstate = keyboard.readLine();
+		StringTokenizer st4 = new StringTokenizer(finalstate," ");
+		while(st4.hasMoreTokens()){
+			String i = st4.nextToken();
+			
+			
+			for(State j:States){
+				if(j.s_name.equals(i))
+					Accepts.add(j); 
+			}
+		}
+		
+
+
+		String line = null;
+
+		while ((line = keyboard.readLine()) != null) {
+			
+			StringTokenizer st = new StringTokenizer(line," ");
+             
+			String source = st.nextToken();
+			String alpha = st.nextToken();
+			String target = st.nextToken();
+			
+			
+			//System.out.println(source);
+			//System.out.println(alpha.charAt(0));
+			//System.out.println(target);
+
+			AddTransition(source,alpha.charAt(0),target,States);
+			
+		}
+		
+	
+		
+		String i =keyboard1.readLine();
+		
+		
+		
+		for(int j = 0; j< i.length(); j++){
+			ch = i.charAt(j);
+			if(! Alphabet.contains(ch)){
+				System.out.println("invalid character" + ch);
+				System.exit(0);
+			}
+			
+			state = check(state,ch,States);
+				
+		}
+		
+		if(Accepts.contains(state))
+			System.out.println("Yes");
+		else
+			System.out.println("No");
+
+
+
+
+
+	} 
+	
+	
+	
+	public static void AddTransition(String fst, char i, String snd, Set<State> All){
+		
+		State source = find(fst,All);
+		
+		State target = find(snd,All);
+		
+		source.s_transition.put(i,target);
+		
+	}
+	
+	public static State find(String name,Set<State> States){
+		
+		
+		for(State j:States){
+			if(j.s_name.equals(name))
+				return j;
+		}
+		return null;
+		
+	}
+    public static State check(State source, char i,Set<State> All){
+    	
+    	
+    	State to = source.s_transition.get(i);
+		
+		return to;
+	}
+}

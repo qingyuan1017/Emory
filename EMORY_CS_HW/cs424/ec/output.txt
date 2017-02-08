@@ -1,0 +1,8 @@
+Q0 Q1 Q2 Q3 Q4 
+a b c d e f h i j k l s v w 0 1 + - * / = ; ~
+Q0
+Q1
+Q0 ~ Q2
+Q4 ~ Q1
+Q2 i Q3
+Q3 f Q4
